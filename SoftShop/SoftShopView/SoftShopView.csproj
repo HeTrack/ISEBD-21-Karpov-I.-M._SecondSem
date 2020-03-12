@@ -130,6 +130,10 @@
       <Project>{fdc0b608-7521-49fb-8cd9-3b296372a3e9}</Project>
       <Name>SoftShopBusinessLogic</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SoftShopFileImplement\SoftShopFileImplement.csproj">
+      <Project>{341c1342-b13b-47eb-955a-d3eb477451f7}</Project>
+      <Name>SoftShopFileImplement</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SoftShopListImplement\SoftShopListImplement.csproj">
       <Project>{394e2192-f501-4b25-adfe-7a5346927bf6}</Project>
       <Name>SoftShopListImplement</Name>
