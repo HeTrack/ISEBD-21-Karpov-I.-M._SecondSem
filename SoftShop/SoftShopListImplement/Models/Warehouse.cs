@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SoftShopBusinessLogic.BindingModels
+namespace SoftShopListImplement.Models
 {
-    public class WarehouseBindingModel
+    public class Warehouse
     {
         public int Id { get; set; }
         public string WarehouseName { get; set; }
-        public List<WarehouseSoftBindingModel> WarehouseSofts { get; set; }
     }
 }
