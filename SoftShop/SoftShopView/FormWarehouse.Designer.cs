@@ -32,14 +32,15 @@
             this.buttonSave = new System.Windows.Forms.Button();
             this.labelName = new System.Windows.Forms.Label();
             this.textBoxName = new System.Windows.Forms.TextBox();
+            this.dataGridView = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(320, 58);
-            this.buttonCancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonCancel.Location = new System.Drawing.Point(352, 380);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(98, 30);
+            this.buttonCancel.Size = new System.Drawing.Size(110, 37);
             this.buttonCancel.TabIndex = 7;
             this.buttonCancel.Text = "Отмена";
             this.buttonCancel.UseVisualStyleBackColor = true;
@@ -47,10 +48,9 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(210, 58);
-            this.buttonSave.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonSave.Location = new System.Drawing.Point(226, 380);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(98, 30);
+            this.buttonSave.Size = new System.Drawing.Size(110, 37);
             this.buttonSave.TabIndex = 6;
             this.buttonSave.Text = "Сохранить";
             this.buttonSave.UseVisualStyleBackColor = true;
@@ -59,33 +59,45 @@
             // labelName
             // 
             this.labelName.AutoSize = true;
-            this.labelName.Location = new System.Drawing.Point(12, 10);
+            this.labelName.Location = new System.Drawing.Point(14, 12);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(72, 17);
+            this.labelName.Size = new System.Drawing.Size(83, 20);
             this.labelName.TabIndex = 5;
             this.labelName.Text = "Название";
             // 
             // textBoxName
             // 
-            this.textBoxName.Location = new System.Drawing.Point(92, 10);
-            this.textBoxName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxName.Location = new System.Drawing.Point(103, 12);
             this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(320, 22);
+            this.textBoxName.Size = new System.Drawing.Size(359, 26);
             this.textBoxName.TabIndex = 4;
+            // 
+            // dataGridView
+            // 
+            this.dataGridView.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView.Location = new System.Drawing.Point(18, 67);
+            this.dataGridView.Name = "dataGridView";
+            this.dataGridView.RowHeadersVisible = false;
+            this.dataGridView.RowTemplate.Height = 28;
+            this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView.Size = new System.Drawing.Size(444, 287);
+            this.dataGridView.TabIndex = 8;
             // 
             // FormWarehouse
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(437, 102);
+            this.ClientSize = new System.Drawing.Size(484, 438);
+            this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.labelName);
             this.Controls.Add(this.textBoxName);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormWarehouse";
             this.Text = "Склад";
             this.Load += new System.EventHandler(this.FormWarehouse_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -97,5 +109,6 @@
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Label labelName;
         private System.Windows.Forms.TextBox textBoxName;
+        private System.Windows.Forms.DataGridView dataGridView;
     }
 }
