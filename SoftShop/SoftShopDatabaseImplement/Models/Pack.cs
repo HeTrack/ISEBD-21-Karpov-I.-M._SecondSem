@@ -11,9 +11,10 @@ namespace SoftShopDatabaseImplement.Models
         public int Id { get; set; }
         [Required]
         public string PackName { get; set; }
+        [ForeignKey("PackId")]
         [Required]
         public decimal Price { get; set; }
-        [ForeignKey("PackId")]
+        public virtual List<Order> Orders { get; set; }
         public virtual List<PackSoft> PackSofts { get; set; }
     }
 }

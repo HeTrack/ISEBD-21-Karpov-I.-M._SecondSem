@@ -87,10 +87,8 @@ namespace SoftShopListImplement.Implements
                         // обновляем количество
                         source.PackSofts[i].Count =
                         model.PackSofts[source.PackSofts[i].SoftId].Item2;
+                        model.PackSofts.Remove(source.PackSofts[i].PackId);
                         // из модели убираем эту запись, чтобы остались только не просмотренные
-
-
-                        model.PackSofts.Remove(source.PackSofts[i].SoftId);
                     }
                     else
                     {

@@ -45,7 +45,7 @@ namespace SoftShopDatabaseImplement.Implements
             using (var context = new SoftShopDatabase())
             {
                 Order element = context.Orders.FirstOrDefault(rec => rec.Id ==
-model.Id);
+               model.Id);
                 if (element != null)
                 {
                     context.Orders.Remove(element);
@@ -62,7 +62,7 @@ model.Id);
             using (var context = new SoftShopDatabase())
             {
                 return context.Orders
-            .Include(rec => rec.Pack)
+                .Include(rec => rec.Pack)
             .Where(rec => model == null || rec.Id == model.Id)
             .Select(rec => new OrderViewModel
             {

@@ -45,19 +45,19 @@ namespace SoftShopDatabaseImplement.Implements
                         context.SaveChanges();
                         if (model.Id.HasValue)
                         {
-                            var PackSofts = context.PackSofts.Where(rec
+                            var productComponents = context.PackSofts.Where(rec
                            => rec.PackId == model.Id.Value).ToList();
                             // удалили те, которых нет в модели
-                            context.PackSofts.RemoveRange(PackSofts.Where(rec =>
+                            context.PackSofts.RemoveRange(productComponents.Where(rec =>
                             !model.PackSofts.ContainsKey(rec.SoftId)).ToList());
                             context.SaveChanges();
                             // обновили количество у существующих записей
-                            foreach (var updateSoft in PackSofts)
+                            foreach (var updateComponent in productComponents)
                             {
-                                updateSoft.Count =
-                               model.PackSofts[updateSoft.SoftId].Item2;
+                                updateComponent.Count =
+                               model.PackSofts[updateComponent.SoftId].Item2;
 
-                                model.PackSofts.Remove(updateSoft.SoftId);
+                                model.PackSofts.Remove(updateComponent.SoftId);
                             }
                             context.SaveChanges();
                         }
@@ -90,7 +90,6 @@ namespace SoftShopDatabaseImplement.Implements
                 {
                     try
                     {
-                        // удаяем записи по компонентам при удалении изделия
                         context.PackSofts.RemoveRange(context.PackSofts.Where(rec =>
                         rec.PackId == model.Id));
                         Pack element = context.Packs.FirstOrDefault(rec => rec.Id

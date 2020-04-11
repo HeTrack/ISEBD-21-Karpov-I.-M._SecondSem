@@ -114,7 +114,7 @@ namespace SoftShopDatabaseImplement.Migrations
             modelBuilder.Entity("SoftShopDatabaseImplement.Models.Order", b =>
                 {
                     b.HasOne("SoftShopDatabaseImplement.Models.Pack", "Pack")
-                        .WithMany()
+                        .WithMany("Orders")
                         .HasForeignKey("PackId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

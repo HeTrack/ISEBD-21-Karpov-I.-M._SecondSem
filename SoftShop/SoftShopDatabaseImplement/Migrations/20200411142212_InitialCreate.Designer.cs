@@ -10,7 +10,7 @@ using SoftShopDatabaseImplement;
 namespace SoftShopDatabaseImplement.Migrations
 {
     [DbContext(typeof(SoftShopDatabase))]
-    [Migration("20200315172907_InitialCreate")]
+    [Migration("20200411142212_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -116,7 +116,7 @@ namespace SoftShopDatabaseImplement.Migrations
             modelBuilder.Entity("SoftShopDatabaseImplement.Models.Order", b =>
                 {
                     b.HasOne("SoftShopDatabaseImplement.Models.Pack", "Pack")
-                        .WithMany()
+                        .WithMany("Orders")
                         .HasForeignKey("PackId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
