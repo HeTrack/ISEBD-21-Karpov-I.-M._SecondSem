@@ -55,6 +55,7 @@ namespace SoftShopListImplement.Implements
                 }
                 return result;
             }
+
             public WarehouseViewModel GetElement(int id)
             {
                 for (int i = 0; i < source.Warehouses.Count; ++i)
