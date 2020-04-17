@@ -33,11 +33,12 @@ namespace SoftShopBusinessLogic.BusinessLogics
                     docBody.AppendChild(CreateParagraph(new WordParagraph
                     {
 
-                        Texts = new List<string> { pack.PackName, "  —  Цена: " + pack.Price.ToString() },
+                        Texts = new List<string> { pack.PackName, "—  Цена: " + pack.Price.ToString() },
                         TextProperties = new WordParagraphProperties
                         {
                             Size = "24",
-                            JustificationValues = JustificationValues.Both
+                            JustificationValues = JustificationValues.Both,
+                            Bold = true,
                         }
                     }));
                 }
@@ -62,8 +63,7 @@ namespace SoftShopBusinessLogic.BusinessLogics
             if (paragraph != null)
             {
                 Paragraph docParagraph = new Paragraph();
-                docParagraph.AppendChild(CreateParagraphProperties(paragraph.TextProperties));
-                int i = 0;
+                docParagraph.AppendChild(CreateParagraphProperties(paragraph.TextProperties));            
                 foreach (var run in paragraph.Texts)
                 {
                     Run docRun = new Run();
@@ -72,7 +72,7 @@ namespace SoftShopBusinessLogic.BusinessLogics
                     {
                         Val = paragraph.TextProperties.Size
                     });
-                    if (i%2==0)
+                    if (!run.StartsWith("—") && paragraph.TextProperties.Bold)
                     {
                         properties.AppendChild(new Bold());
                     }
@@ -83,7 +83,7 @@ namespace SoftShopBusinessLogic.BusinessLogics
                         Space = SpaceProcessingModeValues.Preserve
                     });
                     docParagraph.AppendChild(docRun);
-                    i++;
+                  
                 }
                 return docParagraph;
             }
