@@ -73,21 +73,25 @@ namespace SoftShopDatabaseImplement.Implements
         {
             using (var context = new SoftShopDatabase())
             {
-                return context.Orders.Where(rec => model == null ||
-                     (rec.Id == model.Id && model.Id.HasValue) ||
-                     (model.DateFrom.HasValue && model.DateTo.HasValue &&
-                     (rec.DateCreate >= model.DateFrom) && (rec.DateCreate <= model.DateTo))).ToList().Select(rec => new OrderViewModel()
-                 {
-                         Id = rec.Id,
-                         PackId = rec.PackId,
-                         PackName = context.Packs.FirstOrDefault((r) => r.Id == rec.PackId).PackName,
-                         Count = rec.Count,
-                         DateCreate = rec.DateCreate,
-                         DateImplement = rec.DateImplement,
-                         Status = rec.Status,
-                         Sum = rec.Sum
-                     })
-            .ToList();
+                return context.Orders.Where(rec => model == null || (rec.Id == model.Id && model.Id.HasValue)
+                || (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo) ||
+                (model.ClientId.HasValue && rec.ClientId == model.ClientId))
+                .Select(rec => new OrderViewModel
+                {
+                    Id = rec.Id,
+                    PackId = rec.PackId,
+                    ClientId = rec.ClientId,
+                    DateCreate = rec.DateCreate,
+                    DateImplement = rec.DateImplement,
+                    Status = rec.Status,
+                    Count = rec.Count,
+                    Sum = rec.Sum,
+                    ClientFIO = context.Clients.FirstOrDefault(recC => recC.Id ==
+                rec.ClientId).ClientFIO,
+                    PackName = context.Packs.FirstOrDefault(recS => recS.Id ==
+                   rec.PackId).PackName,
+                })
+                .ToList();
             }
         }
     }

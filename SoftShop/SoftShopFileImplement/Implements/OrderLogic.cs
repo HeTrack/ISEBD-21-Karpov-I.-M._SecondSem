@@ -71,5 +71,13 @@ namespace SoftShopFileImplement.Implements
             })
             .ToList();
         }
+
+        private string GetPackName(int id)
+        {
+            string name = "";
+            var Pack = source.Packs.FirstOrDefault(x => x.Id == id);
+            name = Pack != null ? Pack.PackName : "";
+            return name;
+        }
     }
 }

@@ -1,23 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.ComponentModel;
 using System.Runtime.Serialization;
+using System.Text;
 
 namespace SoftShopBusinessLogic.ViewModels
 {
     [DataContract]
-    public class PackViewModel
+    public class ClientViewModel
     {
         [DataMember]
         public int Id { get; set; }
         [DataMember]
-        [DisplayName("Название пакета")]
-        public string PackName { get; set; }
+        [DisplayName("ФИО")]
+        public string ClientFIO { get; set; }
         [DataMember]
-        [DisplayName("Цена")]
-        public decimal Price { get; set; }
+        [DisplayName("Логин")]
+        public string Email { get; set; }
         [DataMember]
-        public Dictionary<int, (string, int)> PackSofts { get; set; }
+        [DisplayName("Пароль")]
+        public string Password { get; set; }
     }
 }

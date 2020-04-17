@@ -21,6 +21,7 @@ namespace SoftShopBusinessLogic.BusinessLogics
             this.softLogic = softLogic;
             this.orderLogic = orderLogic;
         }
+
         public List<ReportPackSoftViewModel> GetPackSoft()
         {
             var softs = softLogic.Read(null);
