@@ -54,25 +54,16 @@ namespace SoftShopBusinessLogic.BusinessLogics
                     ColumnName = "A",
                     RowIndex = 1,
                     Text = info.Title,
-                    StyleIndex = 2U
+                    StyleIndex = 1U
                 });
                 MergeCells(new ExcelMergeParameters
                 {
                     Worksheet = worksheetPart.Worksheet,
                     CellFromName = "A1",
-                    CellToName = "C1"
+                    CellToName = "E1"
                 });
-                uint rowIndex = 2;
-                List<DateTime> dates = new List<DateTime>();
-                foreach (var order in info.Orders)
-                {
-                    if (!dates.Contains(order.DateCreate.Date))
-                    {
-                        dates.Add(order.DateCreate.Date);
-                    }
-                }
-
-                foreach (var date in dates)
+                uint rowIndex = 2;             
+                foreach (var date in info.Orders)
                 {
                     decimal generalSum = 0;
                     InsertCellInWorksheet(new ExcelCellParameters
@@ -81,13 +72,12 @@ namespace SoftShopBusinessLogic.BusinessLogics
                         ShareStringPart = shareStringPart,
                         ColumnName = "A",
                         RowIndex = rowIndex,
-                        Text = date.Date.ToShortDateString(),
+                        Text = date.Key.ToShortDateString(),
                         StyleIndex = 0U
                     });
                     rowIndex++;
 
-                    foreach (var order in info.Orders.Where(rec => rec.DateCreate.Date == date.Date))
-                    {
+                    foreach (var order in date) { 
                         InsertCellInWorksheet(new ExcelCellParameters
                         {
                             Worksheet = worksheetPart.Worksheet,
