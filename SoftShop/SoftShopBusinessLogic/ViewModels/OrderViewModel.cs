@@ -41,4 +41,4 @@ namespace SoftShopBusinessLogic.ViewModels
         [DisplayName("Дата выполнения")]
         public DateTime? DateImplement { get; set; }
  }
-}
+}
