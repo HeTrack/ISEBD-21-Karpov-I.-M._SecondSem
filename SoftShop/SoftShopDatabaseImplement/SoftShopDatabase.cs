@@ -18,7 +18,7 @@ namespace SoftShopDatabaseImplement
         }
         public virtual DbSet<Soft> Softs { set; get; }
         public virtual DbSet<Pack> Packs { set; get; }
-        public virtual DbSet<PackSoft> PackSofts{ set; get; }
+        public virtual DbSet<PackSoft> PackSofts { set; get; }
         public virtual DbSet<Order> Orders { set; get; }
         public virtual DbSet<Client> Clients { set; get; }
     }

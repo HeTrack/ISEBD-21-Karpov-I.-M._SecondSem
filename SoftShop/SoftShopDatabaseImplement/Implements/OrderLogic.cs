@@ -32,6 +32,7 @@ namespace SoftShopDatabaseImplement.Implements
                     context.Orders.Add(element);
                 }
                 element.PackId = model.PackId == 0 ? element.PackId : model.PackId;
+                element.ClientId = model.ClientId == null ? element.ClientId : (int)model.ClientId;
                 element.Count = model.Count;
                 element.Sum = model.Sum;
                 element.Status = model.Status;

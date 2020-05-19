@@ -10,8 +10,6 @@ namespace SoftShopDatabaseImplement.Models
     {
         public int Id { get; set; }
         public int ClientId { get; set; }
-        [Required]
-        public string ClientFIO { get; set; }
         public int PackId { get; set; }
         [Required]
         public int Count { get; set; }
