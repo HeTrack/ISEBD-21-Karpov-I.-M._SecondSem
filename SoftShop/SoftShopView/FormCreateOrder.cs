@@ -116,5 +116,6 @@ namespace SoftShopView
             DialogResult = DialogResult.Cancel;
             Close();
         }
+        
     }
 }

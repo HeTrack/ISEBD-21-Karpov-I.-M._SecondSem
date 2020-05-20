@@ -43,17 +43,19 @@
             // comboBoxPack
             // 
             this.comboBoxPack.FormattingEnabled = true;
-            this.comboBoxPack.Location = new System.Drawing.Point(159, 28);
+            this.comboBoxPack.Location = new System.Drawing.Point(141, 55);
+            this.comboBoxPack.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBoxPack.Name = "comboBoxPack";
-            this.comboBoxPack.Size = new System.Drawing.Size(358, 28);
+            this.comboBoxPack.Size = new System.Drawing.Size(319, 24);
             this.comboBoxPack.TabIndex = 14;
             this.comboBoxPack.SelectedIndexChanged += new System.EventHandler(this.comboBoxPack_SelectedIndexChanged);
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(407, 158);
+            this.buttonCancel.Location = new System.Drawing.Point(383, 154);
+            this.buttonCancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(110, 37);
+            this.buttonCancel.Size = new System.Drawing.Size(98, 30);
             this.buttonCancel.TabIndex = 13;
             this.buttonCancel.Text = "Отмена";
             this.buttonCancel.UseVisualStyleBackColor = true;
@@ -61,9 +63,10 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(281, 158);
+            this.buttonSave.Location = new System.Drawing.Point(279, 154);
+            this.buttonSave.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(110, 37);
+            this.buttonSave.Size = new System.Drawing.Size(98, 30);
             this.buttonSave.TabIndex = 12;
             this.buttonSave.Text = "Сохранить";
             this.buttonSave.UseVisualStyleBackColor = true;
@@ -72,70 +75,72 @@
             // labelSoft
             // 
             this.labelSoft.AutoSize = true;
-            this.labelSoft.Location = new System.Drawing.Point(48, 31);
+            this.labelSoft.Location = new System.Drawing.Point(43, 62);
             this.labelSoft.Name = "labelSoft";
-            this.labelSoft.Size = new System.Drawing.Size(53, 20);
+            this.labelSoft.Size = new System.Drawing.Size(29, 17);
             this.labelSoft.TabIndex = 10;
             this.labelSoft.Text = "ПО";
             // 
             // labelSum
             // 
             this.labelSum.AutoSize = true;
-            this.labelSum.Location = new System.Drawing.Point(48, 113);
+            this.labelSum.Location = new System.Drawing.Point(43, 117);
             this.labelSum.Name = "labelSum";
-            this.labelSum.Size = new System.Drawing.Size(58, 20);
+            this.labelSum.Size = new System.Drawing.Size(50, 17);
             this.labelSum.TabIndex = 11;
-            this.labelSum.Text = "Сумма";
+            this.labelSum.Text = "Сумма";        
             // 
             // textBoxCount
             // 
-            this.textBoxCount.Location = new System.Drawing.Point(158, 72);
+            this.textBoxCount.Location = new System.Drawing.Point(141, 83);
+            this.textBoxCount.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxCount.Name = "textBoxCount";
-            this.textBoxCount.Size = new System.Drawing.Size(359, 26);
+            this.textBoxCount.Size = new System.Drawing.Size(320, 22);
             this.textBoxCount.TabIndex = 9;
             this.textBoxCount.TextChanged += new System.EventHandler(this.textBoxCount_TextChanged);
             // 
             // textBoxSum
             // 
-            this.textBoxSum.Location = new System.Drawing.Point(158, 113);
+            this.textBoxSum.Location = new System.Drawing.Point(141, 112);
+            this.textBoxSum.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxSum.Name = "textBoxSum";
             this.textBoxSum.ReadOnly = true;
-            this.textBoxSum.Size = new System.Drawing.Size(359, 26);
+            this.textBoxSum.Size = new System.Drawing.Size(320, 22);
             this.textBoxSum.TabIndex = 9;
             // 
             // labelCount
             // 
             this.labelCount.AutoSize = true;
-            this.labelCount.Location = new System.Drawing.Point(48, 72);
+            this.labelCount.Location = new System.Drawing.Point(43, 86);
             this.labelCount.Name = "labelCount";
-            this.labelCount.Size = new System.Drawing.Size(100, 20);
+            this.labelCount.Size = new System.Drawing.Size(86, 17);
             this.labelCount.TabIndex = 10;
             this.labelCount.Text = "Количество";
             // 
             // labelClient
             // 
             this.labelClient.AutoSize = true;
-            this.labelClient.Location = new System.Drawing.Point(36, 54);
+            this.labelClient.Location = new System.Drawing.Point(43, 30);
             this.labelClient.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelClient.Name = "labelClient";
-            this.labelClient.Size = new System.Drawing.Size(43, 13);
+            this.labelClient.Size = new System.Drawing.Size(56, 17);
             this.labelClient.TabIndex = 15;
             this.labelClient.Text = "Клиент";
             // 
             // comboBoxClient
             // 
             this.comboBoxClient.FormattingEnabled = true;
-            this.comboBoxClient.Location = new System.Drawing.Point(106, 51);
+            this.comboBoxClient.Location = new System.Drawing.Point(141, 27);
             this.comboBoxClient.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxClient.Name = "comboBoxClient";
-            this.comboBoxClient.Size = new System.Drawing.Size(240, 21);
+            this.comboBoxClient.Size = new System.Drawing.Size(319, 24);
             this.comboBoxClient.TabIndex = 16;
             // 
             // FormCreateOrder
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(550, 224);
+            this.ClientSize = new System.Drawing.Size(512, 205);
             this.Controls.Add(this.comboBoxClient);
             this.Controls.Add(this.labelClient);
             this.Controls.Add(this.comboBoxPack);
@@ -146,11 +151,13 @@
             this.Controls.Add(this.labelSum);
             this.Controls.Add(this.textBoxSum);
             this.Controls.Add(this.textBoxCount);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormCreateOrder";
             this.Text = "Заказ";
             this.Load += new System.EventHandler(this.FormCreateOrder_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion
