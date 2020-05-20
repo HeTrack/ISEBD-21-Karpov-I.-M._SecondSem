@@ -50,10 +50,6 @@ namespace SoftShopDatabaseImplement.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ClientFIO")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("ClientId")
                         .HasColumnType("int");
 
@@ -146,7 +142,7 @@ namespace SoftShopDatabaseImplement.Migrations
 
             modelBuilder.Entity("SoftShopDatabaseImplement.Models.Order", b =>
                 {
-                    b.HasOne("SoftShopDatabaseImplement.Models.Client", null)
+                    b.HasOne("SoftShopDatabaseImplement.Models.Client", "Client")
                         .WithMany("Orders")
                         .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)

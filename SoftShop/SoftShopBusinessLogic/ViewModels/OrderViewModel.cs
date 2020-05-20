@@ -18,12 +18,11 @@ namespace SoftShopBusinessLogic.ViewModels
         [DataMember]
         public int ClientId { get; set; }
         [DataMember]
-        public int PackId { get; set; }
-        [DataMember]
         [DisplayName("Клиент")]
         public string ClientFIO { get; set; }
+        public int PackId { get; set; }
         [DataMember]
-        [DisplayName("Изделие")]
+        [DisplayName("Пакет")]
         public string PackName { get; set; }
         [DataMember]
         [DisplayName("Количество")]
@@ -40,5 +39,5 @@ namespace SoftShopBusinessLogic.ViewModels
         [DataMember]
         [DisplayName("Дата выполнения")]
         public DateTime? DateImplement { get; set; }
- }
+    }
 }

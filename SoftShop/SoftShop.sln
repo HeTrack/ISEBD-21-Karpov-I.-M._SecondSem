@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoftShopFileImplement", "So
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoftShopDatabaseImplement", "SoftShopDatabaseImplement\SoftShopDatabaseImplement.csproj", "{C191B004-BD6D-4257-AEDA-7C09D7C06761}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftShopRestApi", "SoftShopRestApi\SoftShopRestApi.csproj", "{D262177F-FB00-49A7-8F98-32E4DF8D7297}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoftShopRestApi", "SoftShopRestApi\SoftShopRestApi.csproj", "{D262177F-FB00-49A7-8F98-32E4DF8D7297}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftShopClientView", "SoftShopClientView\SoftShopClientView.csproj", "{B7B215F6-069E-447C-8FC1-691918CFBA9C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{D262177F-FB00-49A7-8F98-32E4DF8D7297}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D262177F-FB00-49A7-8F98-32E4DF8D7297}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D262177F-FB00-49A7-8F98-32E4DF8D7297}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7B215F6-069E-447C-8FC1-691918CFBA9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7B215F6-069E-447C-8FC1-691918CFBA9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7B215F6-069E-447C-8FC1-691918CFBA9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7B215F6-069E-447C-8FC1-691918CFBA9C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

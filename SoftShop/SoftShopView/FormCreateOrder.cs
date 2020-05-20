@@ -20,11 +20,13 @@ namespace SoftShopView
         [Dependency]
         public new IUnityContainer Container { get; set; }
         private readonly IPackLogic logicB;
+        private readonly IClientLogic logicC;
         private readonly MainLogic logicM;
-        public FormCreateOrder(IPackLogic logicB, MainLogic logicM)
+        public FormCreateOrder(IPackLogic logicB, IClientLogic logicC, MainLogic logicM)
         {
             InitializeComponent();
             this.logicB = logicB;
+            this.logicC = logicC;
             this.logicM = logicM;
         }
         private void FormCreateOrder_Load(object sender, EventArgs e)
@@ -35,6 +37,12 @@ namespace SoftShopView
                 comboBoxPack.DataSource = list;
                 comboBoxPack.DisplayMember = "PackName";
                 comboBoxPack.ValueMember = "Id";
+
+                var listC = logicC.Read(null);
+                comboBoxClient.DisplayMember = "ClientFIO";
+                comboBoxClient.ValueMember = "Id";
+                comboBoxClient.DataSource = listC;
+                comboBoxClient.SelectedItem = null;
             }
             catch (Exception ex)
             {
@@ -44,14 +52,12 @@ namespace SoftShopView
         }
         private void CalcSum()
         {
-            if (comboBoxPack.SelectedValue != null &&
-           !string.IsNullOrEmpty(textBoxCount.Text))
+            if (comboBoxPack.SelectedValue != null && !string.IsNullOrEmpty(textBoxCount.Text))
             {
                 try
                 {
                     int id = Convert.ToInt32(comboBoxPack.SelectedValue);
-                    PackViewModel Pack = logicB.Read(new PackBindingModel
-                    { Id = id })?[0];
+                    PackViewModel Pack = logicB.Read(new PackBindingModel { Id = id })?[0];
                     int count = Convert.ToInt32(textBoxCount.Text);
                     textBoxSum.Text = (count * Pack.Price).ToString();
                 }
@@ -90,6 +96,7 @@ namespace SoftShopView
                 logicM.CreateOrder(new CreateOrderBindingModel
                 {
                     PackId = Convert.ToInt32(comboBoxPack.SelectedValue),
+                    ClientId = Convert.ToInt32(comboBoxClient.SelectedValue),
                     Count = Convert.ToInt32(textBoxCount.Text),
                     Sum = Convert.ToDecimal(textBoxSum.Text)
                 });

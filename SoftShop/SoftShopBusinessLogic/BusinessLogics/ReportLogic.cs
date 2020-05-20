@@ -24,45 +24,39 @@ namespace SoftShopBusinessLogic.BusinessLogics
 
         public List<ReportPackSoftViewModel> GetPackSoft()
         {
-            var softs = softLogic.Read(null);
+            
             var packs = packLogic.Read(null);
             var list = new List<ReportPackSoftViewModel>();
-            foreach (var soft in softs)
+            foreach (var pack in packs)
             {
-                foreach (var pack in packs)
+                foreach (var ps in pack.PackSofts)
                 {
-                    if (pack.PackSofts.ContainsKey(soft.Id))
-                    {
                         var record = new ReportPackSoftViewModel
                         {
                             PackName = pack.PackName,
-                            SoftName = soft.SoftName,
-                            Count = pack.PackSofts[soft.Id].Item2
+                            SoftName = ps.Value.Item1,
+                            Count = ps.Value.Item2
                         };
                         list.Add(record);
                     }
                 }
-            }
             return list;
         }
 
-        public List<ReportOrdersViewModel> GetOrders(ReportBindingModel model)
+        public List<IGrouping<DateTime, OrderViewModel>> GetOrders(ReportBindingModel model)
         {
-            return orderLogic.Read(new OrderBindingModel
+            var list = orderLogic
+            .Read(new OrderBindingModel
             {
                 DateFrom = model.DateFrom,
                 DateTo = model.DateTo
             })
-            .Select(x => new ReportOrdersViewModel
-            {
-                DateCreate = x.DateCreate,
-                PackName = x.PackName,
-                Count = x.Count,
-                Sum = x.Sum,
-                Status = x.Status
-            })
+            .GroupBy(rec => rec.DateCreate.Date)
+            .OrderBy(recG => recG.Key)
             .ToList();
-        }
+
+            return list;
+    }
 
         public void SavePacksToWordFile(ReportBindingModel model)
         {
@@ -78,8 +72,6 @@ namespace SoftShopBusinessLogic.BusinessLogics
         {
             SaveToExcel.CreateDoc(new ExcelInfo
             {
-                DateFrom = model.DateFrom.Value,
-                DateTo = model.DateTo.Value,
                 FileName = model.FileName,
                 Title = "Список заказов",
                 Orders = GetOrders(model)
