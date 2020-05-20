@@ -12,6 +12,7 @@ namespace SoftShopListImplement
         public List<Pack> Packs { get; set; }
         public List<PackSoft> PackSofts { get; set; }
         public List<Client> Clients { get; set; }
+        public List<Implementer> Implementers { get; set; }
         private DataListSingleton()
         {
             Softs = new List<Soft>();
@@ -19,7 +20,7 @@ namespace SoftShopListImplement
             Packs = new List<Pack>();
             PackSofts = new List<PackSoft>();
             Clients = new List<Client>();
-
+            Implementers = new List<Implementer>();
         }
         public static DataListSingleton GetInstance()
         {
