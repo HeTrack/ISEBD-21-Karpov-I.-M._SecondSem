@@ -26,10 +26,12 @@ namespace SoftShopView
             this.logic = logic;
             this.orderLogic = orderLogic;
         }
+
         private void FormMain_Load(object sender, EventArgs e)
         {
             LoadData();
         }
+
         private void LoadData()
         {
             try
@@ -49,22 +51,26 @@ namespace SoftShopView
                MessageBoxIcon.Error);
             }
         }
+
         private void поToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormSofts>();
             form.ShowDialog();
         }
+
         private void пакетыToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormPacks>();
             form.ShowDialog();
         }
+
         private void buttonCreateOrder_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormCreateOrder>();
             form.ShowDialog();
             LoadData();
         }
+
         private void buttonTakeOrderInWork_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
@@ -82,6 +88,7 @@ namespace SoftShopView
                 }
             }
         }
+
         private void buttonOrderReady_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
@@ -102,6 +109,7 @@ namespace SoftShopView
                 }
             }
         }
+
         private void buttonPayOrder_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
@@ -119,9 +127,24 @@ namespace SoftShopView
                 }
             }
         }
+
         private void buttonRef_Click(object sender, EventArgs e)
         {
             LoadData();
         }
+
+        private void СкладыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormWarehouses>();
+            form.ShowDialog();
+        }
+
+        private void ПополнитьСкладToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormFillWarehouse>();
+            form.ShowDialog();
+        }
+
+       
     }
 }
