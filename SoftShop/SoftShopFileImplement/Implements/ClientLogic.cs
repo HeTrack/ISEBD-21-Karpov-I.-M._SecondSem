@@ -2,7 +2,6 @@
 using SoftShopBusinessLogic.Interfaces;
 using SoftShopBusinessLogic.ViewModels;
 using SoftShopFileImplement.Models;
-using SoftShopListImplement;
 using System;
 using System.Collections.Generic;
 using System.Linq;

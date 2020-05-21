@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml.Linq;
 using SoftShopBusinessLogic.Enums;
-using SoftShopListImplement.Models;
 using System.Linq;
 using SoftShopFileImplement.Models;
 
-namespace SoftShopListImplement
+namespace SoftShopFileImplement
 {
     public class FileDataListSingleton
     {
