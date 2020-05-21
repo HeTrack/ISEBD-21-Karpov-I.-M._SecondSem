@@ -1,21 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Softs>
   <Soft Id="1">
-    <SoftName>my</SoftName>
+    <SoftName>excel</SoftName>
   </Soft>
   <Soft Id="2">
-    <SoftName>Excel</SoftName>
+    <SoftName>acess</SoftName>
   </Soft>
   <Soft Id="3">
-    <SoftName>Word</SoftName>
+    <SoftName>photoshop15</SoftName>
   </Soft>
   <Soft Id="4">
-    <SoftName>Acess</SoftName>
-  </Soft>
-  <Soft Id="5">
-    <SoftName>Photoshop</SoftName>
-  </Soft>
-  <Soft Id="6">
-    <SoftName>Paint.Net</SoftName>
+    <SoftName>Paint.net</SoftName>
   </Soft>
 </Softs>

@@ -2,10 +2,10 @@
 <Orders>
   <Order Id="1">
     <PackId>1</PackId>
-    <Count>2</Count>
-    <Sum>90</Sum>
+    <Count>24</Count>
+    <Sum>2880</Sum>
     <Status>Выполняется</Status>
-    <DateCreate>2020-03-12T20:59:45.8631522+04:00</DateCreate>
-    <DateImplement>2020-03-12T20:59:49.10922+04:00</DateImplement>
+    <DateCreate>2020-05-21T22:03:51.3252251+04:00</DateCreate>
+    <DateImplement>2020-05-21T22:04:59.9680893+04:00</DateImplement>
   </Order>
 </Orders>

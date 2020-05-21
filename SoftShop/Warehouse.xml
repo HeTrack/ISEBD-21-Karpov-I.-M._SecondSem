@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Warehouses>
   <Warehouse Id="1">
-    <WarehouseName>Склад</WarehouseName>
+    <WarehouseName>склад</WarehouseName>
   </Warehouse>
 </Warehouses>
