@@ -267,7 +267,7 @@ namespace SoftShopFileListImplement
                     xElement.Add(new XElement("WarehouseSoft",
                         new XAttribute("Id", elem.Id),
                         new XElement("SoftId", elem.SoftId),
-                        new XElement("StorageId", elem.WarehouseId),
+                        new XElement("WarehouseId", elem.WarehouseId),
                         new XElement("Count", elem.Count)));
                 }
                 XDocument xDocument = new XDocument(xElement);
