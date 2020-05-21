@@ -1,11 +1,2 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Orders>
-  <Order Id="1">
-    <PackId>1</PackId>
-    <Count>2</Count>
-    <Sum>90</Sum>
-    <Status>Выполняется</Status>
-    <DateCreate>2020-03-12T20:59:45.8631522+04:00</DateCreate>
-    <DateImplement>2020-03-12T20:59:49.10922+04:00</DateImplement>
-  </Order>
-</Orders>
+<Orders />

@@ -4,9 +4,9 @@ using System.Text;
 using SoftShopBusinessLogic.BindingModels;
 using SoftShopBusinessLogic.Interfaces;
 using SoftShopBusinessLogic.ViewModels;
-using SoftShopListImplement;
-using SoftShopListImplement.Models;
 using System.Linq;
+using SoftShopFileImplement;
+using SoftShopFileImplement.Models;
 
 namespace SoftShopFileImplement.Implements
 {
@@ -89,7 +89,7 @@ namespace SoftShopFileImplement.Implements
                 Price = rec.Price,
                 PackSofts = source.PackSofts
             .Where(recPC => recPC.PackId == rec.Id)
-           .ToDictionary(recPC => recPC.PackId, recPC =>
+           .ToDictionary(recPC => recPC.SoftId, recPC =>
             (source.Softs.FirstOrDefault(recC => recC.Id ==
            recPC.SoftId)?.SoftName, recPC.Count))
             })
