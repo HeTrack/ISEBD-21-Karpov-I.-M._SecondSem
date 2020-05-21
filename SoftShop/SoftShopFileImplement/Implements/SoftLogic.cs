@@ -5,8 +5,8 @@ using SoftShopBusinessLogic.BindingModels;
 using SoftShopBusinessLogic.Interfaces;
 using SoftShopBusinessLogic.ViewModels;
 using System.Linq;
-using SoftShopFileListImplement;
-using SoftShopFileListImplement.Models;
+using SoftShopFileImplement;
+using SoftShopFileImplement.Models;
 
 namespace SoftShopFileImplement.Implements
 {

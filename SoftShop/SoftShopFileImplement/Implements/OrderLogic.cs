@@ -5,8 +5,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using SoftShopBusinessLogic.ViewModels;
-using SoftShopFileListImplement;
-using SoftShopFileListImplement.Models;
+using SoftShopFileImplement;
+using SoftShopFileImplement.Models;
 
 namespace SoftShopFileImplement.Implements
 {

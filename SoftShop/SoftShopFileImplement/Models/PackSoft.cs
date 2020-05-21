@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SoftShopFileListImplement.Models
+namespace SoftShopFileImplement.Models
 {
     public class PackSoft
     {

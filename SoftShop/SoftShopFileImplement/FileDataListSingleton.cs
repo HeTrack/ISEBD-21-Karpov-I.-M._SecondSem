@@ -6,9 +6,9 @@ using SoftShopBusinessLogic.Enums;
 using System.Linq;
 using System.Xml.Serialization;
 using SoftShopFileImplement.Models;
-using SoftShopFileListImplement.Models;
 
-namespace SoftShopFileListImplement
+
+namespace SoftShopFileImplement
 {
     public class FileDataListSingleton
     {
