@@ -3,4 +3,19 @@
   <Soft Id="1">
     <SoftName>my</SoftName>
   </Soft>
+  <Soft Id="2">
+    <SoftName>Excel</SoftName>
+  </Soft>
+  <Soft Id="3">
+    <SoftName>Word</SoftName>
+  </Soft>
+  <Soft Id="4">
+    <SoftName>Acess</SoftName>
+  </Soft>
+  <Soft Id="5">
+    <SoftName>Photoshop</SoftName>
+  </Soft>
+  <Soft Id="6">
+    <SoftName>Paint.Net</SoftName>
+  </Soft>
 </Softs>

@@ -1,12 +1,12 @@
 ﻿using SoftShopBusinessLogic.BindingModels;
 using SoftShopBusinessLogic.Interfaces;
-using SoftShopListImplement;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
-using SoftShopListImplement.Models;
 using SoftShopBusinessLogic.ViewModels;
+using SoftShopFileListImplement;
+using SoftShopFileListImplement.Models;
 
 namespace SoftShopFileImplement.Implements
 {
@@ -62,7 +62,8 @@ namespace SoftShopFileImplement.Implements
             .Select(rec => new OrderViewModel
             {
                 Id = rec.Id,
-                PackName = GetPackName(rec.PackId),
+               PackId = rec.PackId,
+               PackName = source.Packs.FirstOrDefault(x => x.Id == rec.PackId)?.PackName,
                 Count = rec.Count,
                 Sum = rec.Sum,
                 Status = rec.Status,
@@ -70,14 +71,6 @@ namespace SoftShopFileImplement.Implements
                 DateImplement = rec.DateImplement
             })
             .ToList();
-        }
-
-        private string GetPackName(int id)
-        {
-            string name = "";
-            var pack = source.Packs.FirstOrDefault(x => x.Id == id);
-            name = pack != null ? pack.PackName : "";
-            return name;
         }
     }
 }

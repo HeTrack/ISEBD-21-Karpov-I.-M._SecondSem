@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml.Linq;
 using SoftShopBusinessLogic.Enums;
-using SoftShopListImplement.Models;
 using System.Linq;
-namespace SoftShopListImplement
+using System.Xml.Serialization;
+using SoftShopFileImplement.Models;
+using SoftShopFileListImplement.Models;
+
+namespace SoftShopFileListImplement
 {
     public class FileDataListSingleton
     {
@@ -14,16 +17,22 @@ namespace SoftShopListImplement
         private readonly string OrderFileName = "C:\\Users\\masha\\source\\Semestr2\\SoftShop\\Order.xml";
         private readonly string PackFileName = "C:\\Users\\masha\\source\\Semestr2\\SoftShop\\Pack.xml";
         private readonly string PackSoftFileName = "C:\\Users\\masha\\source\\Semestr2\\SoftShop\\PackSoft.xml";
+        private readonly string WarehouseFileName = "C:\\Users\\masha\\source\\Semestr2\\SoftShop\\Warehouse.xml";
+        private readonly string WarehouseSoftFileName = "C:\\Users\\masha\\source\\Semestr2\\SoftShop\\WarehouseSoft.xml";
         public List<Soft> Softs { get; set; }
         public List<Order> Orders { get; set; }
         public List<Pack> Packs { get; set; }
         public List<PackSoft> PackSofts { get; set; }
+        public List<Warehouse> Warehouses { set; get; }
+        public List<WarehouseSoft> WarehouseSofts { set; get; }
         private FileDataListSingleton()
         {
             Softs = LoadSofts();
             Orders = LoadOrders();
             Packs = LoadPacks();
             PackSofts = LoadPackSofts();
+            Warehouses = LoadWarehouses();
+            WarehouseSofts = LoadWarehouseSofts();
         }
         public static FileDataListSingleton GetInstance()
         {
@@ -39,6 +48,8 @@ namespace SoftShopListImplement
             SaveOrders();
             SavePacks();
             SavePackSofts();
+            SaveWarehouses();
+            SaveWarehouseSofts();
         }
         private List<Soft> LoadSofts()
         {
@@ -124,6 +135,45 @@ namespace SoftShopListImplement
             }
             return list;
         }
+        private List<Warehouse> LoadWarehouses()
+        {
+            var list = new List<Warehouse>();
+            if (File.Exists(WarehouseFileName))
+            {
+                XDocument xDocument = XDocument.Load(WarehouseFileName);
+                var xElements = xDocument.Root.Elements("Warehouse").ToList();
+                foreach (var elem in xElements)
+                {
+                    list.Add(new Warehouse()
+                    {
+                        Id = Convert.ToInt32(elem.Attribute("Id").Value),
+                        WarehouseName = elem.Element("WarehouseName").Value.ToString()
+                    });
+                }
+            }
+            return list;
+        }
+
+        private List<WarehouseSoft> LoadWarehouseSofts()
+        {
+            var list = new List<WarehouseSoft>();
+            if (File.Exists(WarehouseSoftFileName))
+            {
+                XDocument xDocument = XDocument.Load(WarehouseSoftFileName);
+                var xElements = xDocument.Root.Elements("WarehouseSoft").ToList();
+                foreach (var elem in xElements)
+                {
+                    list.Add(new WarehouseSoft()
+                    {
+                        Id = Convert.ToInt32(elem.Attribute("Id").Value),
+                        SoftId = Convert.ToInt32(elem.Element("SoftId").Value),
+                        WarehouseId = Convert.ToInt32(elem.Element("WarehouseId").Value),
+                        Count = Convert.ToInt32(elem.Element("Count").Value)
+                    });
+                }
+            }
+            return list;
+        }
         private void SaveSofts()
         {
             if (Softs != null)
@@ -190,6 +240,38 @@ namespace SoftShopListImplement
                 }
                 XDocument xDocument = new XDocument(xElement);
                 xDocument.Save(PackSoftFileName);
+            }
+        }
+        private void SaveWarehouses()
+        {
+            if (Warehouses != null)
+            {
+                var xElement = new XElement("Warehouses");
+                foreach (var elem in Warehouses)
+                {
+                    xElement.Add(new XElement("Warehouse",
+                        new XAttribute("Id", elem.Id),
+                        new XElement("WarehouseName", elem.WarehouseName)));
+                }
+                XDocument xDocument = new XDocument(xElement);
+                xDocument.Save(WarehouseFileName);
+            }
+        }
+        private void SaveWarehouseSofts()
+        {
+            if (WarehouseSofts != null)
+            {
+                var xElement = new XElement("WarehouseSofts");
+                foreach (var elem in WarehouseSofts)
+                {
+                    xElement.Add(new XElement("WarehouseSoft",
+                        new XAttribute("Id", elem.Id),
+                        new XElement("SoftId", elem.SoftId),
+                        new XElement("StorageId", elem.WarehouseId),
+                        new XElement("Count", elem.Count)));
+                }
+                XDocument xDocument = new XDocument(xElement);
+                xDocument.Save(WarehouseSoftFileName);
             }
         }
     }

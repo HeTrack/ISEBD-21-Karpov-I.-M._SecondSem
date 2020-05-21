@@ -4,4 +4,12 @@
     <PackName>mi</PackName>
     <Price>45</Price>
   </Pack>
+  <Pack Id="7">
+    <PackName>Microsoft Pack 2012</PackName>
+    <Price>1200</Price>
+  </Pack>
+  <Pack Id="7">
+    <PackName>mmm</PackName>
+    <Price>120</Price>
+  </Pack>
 </Packs>

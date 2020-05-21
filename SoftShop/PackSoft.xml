@@ -5,4 +5,24 @@
     <SoftId>1</SoftId>
     <Count>2</Count>
   </PackSoft>
+  <PackSoft Id="2">
+    <PackId>7</PackId>
+    <SoftId>2</SoftId>
+    <Count>1</Count>
+  </PackSoft>
+  <PackSoft Id="3">
+    <PackId>7</PackId>
+    <SoftId>3</SoftId>
+    <Count>1</Count>
+  </PackSoft>
+  <PackSoft Id="4">
+    <PackId>7</PackId>
+    <SoftId>4</SoftId>
+    <Count>1</Count>
+  </PackSoft>
+  <PackSoft Id="5">
+    <PackId>7</PackId>
+    <SoftId>2</SoftId>
+    <Count>1</Count>
+  </PackSoft>
 </PackSofts>

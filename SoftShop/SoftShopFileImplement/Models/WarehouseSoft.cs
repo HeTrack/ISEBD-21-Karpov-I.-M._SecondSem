@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SoftShopFileListImplement.Models
+namespace SoftShopFileImplement.Models
 {
-    public class PackSoft
+   public class WarehouseSoft
     {
         public int Id { get; set; }
-        public int PackId { get; set; }
+        public int WarehouseId { get; set; }
         public int SoftId { get; set; }
         public int Count { get; set; }
     }

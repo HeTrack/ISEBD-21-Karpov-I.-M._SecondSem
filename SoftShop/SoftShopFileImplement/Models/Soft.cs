@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SoftShopListImplement.Models
+namespace SoftShopFileListImplement.Models
 {
     public class Soft
     {

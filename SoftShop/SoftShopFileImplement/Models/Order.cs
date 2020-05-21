@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using SoftShopBusinessLogic.Enums;
 
-namespace SoftShopListImplement.Models
+namespace SoftShopFileListImplement.Models
 {
     public class Order
     {

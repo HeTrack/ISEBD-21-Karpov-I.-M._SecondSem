@@ -4,6 +4,7 @@ using SoftShopBusinessLogic.ViewModels;
 using SoftShopListImplement.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace SoftShopListImplement.Implements
@@ -160,7 +161,40 @@ namespace SoftShopListImplement.Implements
                 throw new Exception("Элемент не найден");
             }
 
-            public void FillWarehouse(WarehouseSoftBindingModel model)
+        public bool CheckSoftsAvailability(int PackId, int PacksCount)
+        {
+            bool result = true;
+            var PackSofts = source.PackSofts.Where(x => x.PackId == PackId);
+            if (PackSofts.Count() == 0) return false;
+            foreach (var elem in PackSofts)
+            {
+                int count = 0;
+                var storageSofts = source.WarehouseSofts.FindAll(x => x.SoftId == elem.SoftId);
+                count = storageSofts.Sum(x => x.Count);
+                if (count < elem.Count * PacksCount)
+                    return false;
+            }
+            return result;
+        }
+        public void RemoveFromWarehouse(int PackId, int PacksCount)
+        {
+            var PackSofts = source.PackSofts.Where(x => x.PackId == PackId);
+            if (PackSofts.Count() == 0) return;
+            foreach (var elem in PackSofts)
+            {
+                int left = elem.Count * PacksCount;
+                var storageSofts = source.WarehouseSofts.FindAll(x => x.SoftId == elem.SoftId);
+                foreach (var rec in storageSofts)
+                {
+                    int toRemove = left > rec.Count ? rec.Count : left;
+                    rec.Count -= toRemove;
+                    left -= toRemove;
+                    if (left == 0) break;
+                }
+            }
+            return;
+        }
+        public void FillWarehouse(WarehouseSoftBindingModel model)
             {
                 int foundItemIndex = -1;
                 for (int i = 0; i < source.WarehouseSofts.Count; ++i)
