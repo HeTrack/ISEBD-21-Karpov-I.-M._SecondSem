@@ -1,13 +1,12 @@
 ﻿using SoftShopBusinessLogic.BindingModels;
 using SoftShopBusinessLogic.Interfaces;
-using SoftShopListImplement;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
-using SoftShopListImplement.Models;
 using SoftShopBusinessLogic.ViewModels;
 using SoftShopBusinessLogic.Enums;
+using SoftShopFileImplement.Models;
 
 namespace SoftShopFileImplement.Implements
 {
