@@ -41,6 +41,7 @@ namespace SoftShopDatabaseImplement.Implements
                 context.SaveChanges();
             }
         }
+
         public void Delete(OrderBindingModel model)
         {
             using (var context = new SoftShopDatabase())

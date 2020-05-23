@@ -1,1 +1,14 @@
-﻿
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PackSofts>
+  <PackSoft Id="1">
+    <PackId>1</PackId>
+    <SoftId>1</SoftId>
+    <Count>1</Count>
+  </PackSoft>
+  <PackSoft Id="2">
+    <PackId>1</PackId>
+    <SoftId>2</SoftId>
+    <Count>1</Count>
+  </PackSoft>
+</PackSofts>
+
