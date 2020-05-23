@@ -5,6 +5,7 @@ using System.Xml.Linq;
 using SoftShopBusinessLogic.Enums;
 using System.Linq;
 using SoftShopFileImplement.Models;
+using System.Xml.Serialization;
 
 namespace SoftShopFileImplement
 {
