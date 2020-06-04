@@ -11,18 +11,20 @@ namespace SoftShopFileImplement
     public class FileDataListSingleton
     {
         private static FileDataListSingleton instance;
-        private readonly string SoftFileName = "C:\\Users\\iliya\\source\\Semestr 2 TP\\SoftShop\\Soft.xml";
-        private readonly string OrderFileName = "C:\\Users\\iliya\\source\\Semestr 2 TP\\SoftShop\\Order.xml";
-        private readonly string PackFileName = "C:\\Users\\iliya\\source\\Semestr 2 TP\\SoftShop\\Pack.xml";
-        private readonly string PackSoftFileName = "C:\\Users\\iliya\\source\\Semestr 2 TP\\SoftShop\\PackSoft.xml";     
-        private readonly string ClientFileName = "C:\\Users\\iliya\\source\\Semestr 2 TP\\SoftShop\\Client.xml";
-        private readonly string ImplementerFileName = "C:\\Users\\iliya\\source\\Semestr 2 TP\\SoftShop\\Implementer.xml";
+        private readonly string SoftFileName = "C:\\Users\\masha\\source\\Semestr2\\SoftShop\\Soft.xml";
+        private readonly string OrderFileName = "C:\\Users\\masha\\source\\Semestr2\\SoftShop\\Order.xml";
+        private readonly string PackFileName = "C:\\Users\\masha\\source\\Semestr2\\SoftShop\\Pack.xml";
+        private readonly string PackSoftFileName = "C:\\Users\\masha\\source\\Semestr2\\SoftShop\\PackSoft.xml";
+        private readonly string ClientFileName = "C:\\Users\\masha\\source\\Semestr2\\SoftShop\\Client.xml";
+        private readonly string ImplementerFileName = "C:\\Users\\masha\\source\\Semestr2\\SoftShop\\Implementer.xml";
+        private readonly string MessageInfoFileName = "C:\\Users\\masha\\source\\Semestr2\\SoftShop\\MessageInfo.xml";
         public List<Soft> Softs { get; set; }
         public List<Order> Orders { get; set; }
         public List<Pack> Packs { get; set; }
         public List<PackSoft> PackSofts { get; set; }
         public List<Client> Clients { get; set; }
         public List<Implementer> Implementers { get; set; }
+        public List<MessageInfo> MessageInfoes { get; set; }
         private FileDataListSingleton()
         {
             Softs = LoadSofts();
@@ -31,6 +33,7 @@ namespace SoftShopFileImplement
             PackSofts = LoadPackSofts();
             Clients = LoadClients();
             Implementers = LoadImplementers();
+            MessageInfoes = LoadMessageInfoes();
         }
         public static FileDataListSingleton GetInstance()
         {
@@ -48,6 +51,29 @@ namespace SoftShopFileImplement
             SavePackSofts();
             SaveClients();
             SaveImplementers();
+            SaveMessageInfoes();
+        }
+        private List<MessageInfo> LoadMessageInfoes()
+        {
+            var list = new List<MessageInfo>();
+            if (File.Exists(MessageInfoFileName))
+            {
+                XDocument xDocument = XDocument.Load(MessageInfoFileName);
+                var xElements = xDocument.Root.Elements("MessageInfo").ToList();
+                foreach (var elem in xElements)
+                {
+                    list.Add(new MessageInfo
+                    {
+                        MessageId = elem.Attribute("MessageId").Value,
+                        ClientId = Convert.ToInt32(elem.Element("ClientId").Value),
+                        SenderName = elem.Element("SenderName").Value,
+                        DateDelivery = Convert.ToDateTime(elem.Element("DateDelivery").Value),
+                        Subject = elem.Element("Subject").Value,
+                        Body = elem.Element("Body").Value
+                    });
+                }
+            }
+            return list;
         }
         private List<Implementer> LoadImplementers()
         {
@@ -102,7 +128,9 @@ namespace SoftShopFileImplement
                     list.Add(new Soft
                     {
                         Id = Convert.ToInt32(elem.Attribute("Id").Value),
-                        SoftName = elem.Element("SoftName").Value
+                        SoftName =
+
+                    elem.Element("SoftName").Value
                     });
                 }
             }
@@ -125,12 +153,12 @@ namespace SoftShopFileImplement
                         Sum = Convert.ToDecimal(elem.Element("Sum").Value),
                         ClientId = Convert.ToInt32(elem.Element("ClientId").Value),
                         Status = (OrderStatus)Enum.Parse(typeof(OrderStatus),
-                   elem.Element("Status").Value),
+                    elem.Element("Status").Value),
                         DateCreate =
-                   Convert.ToDateTime(elem.Element("DateCreate").Value),
+                    Convert.ToDateTime(elem.Element("DateCreate").Value),
                         DateImplement =
-                   string.IsNullOrEmpty(elem.Element("DateImplement").Value) ? (DateTime?)null :
-                   Convert.ToDateTime(elem.Element("DateImplement").Value),
+                    string.IsNullOrEmpty(elem.Element("DateImplement").Value) ? (DateTime?)null :
+                    Convert.ToDateTime(elem.Element("DateImplement").Value),
                     });
                 }
             }
@@ -175,23 +203,44 @@ namespace SoftShopFileImplement
             }
             return list;
         }
-            private void SaveImplementers()
+        private void SaveMessageInfoes()
+        {
+            if (MessageInfoes != null)
             {
-                if (Implementers != null)
+                var xElement = new XElement("MessageInfoes");
+
+                foreach (var messageInfo in MessageInfoes)
                 {
-                    var xElement = new XElement("Implementers");
-                    foreach (var implementer in Implementers)
-                    {
-                        xElement.Add(new XElement("Implementer",
-                        new XAttribute("Id", implementer.Id),
-                        new XElement("ImplementerFIO", implementer.ImplementerFIO),
-                        new XElement("WorkingTime", implementer.WorkingTime),
-                        new XElement("PauseTime", implementer.PauseTime)));
-                    }
-                    XDocument xDocument = new XDocument(xElement);
-                    xDocument.Save(ImplementerFileName);
+                    xElement.Add(new XElement("MessageInfo",
+                    new XAttribute("Id", messageInfo.MessageId),
+                    new XElement("ClientId", messageInfo.ClientId),
+                    new XElement("SenderName", messageInfo.SenderName),
+                    new XElement("DateDelivery", messageInfo.DateDelivery),
+                    new XElement("Subject", messageInfo.Subject),
+                    new XElement("Body", messageInfo.Body)));
                 }
+
+                XDocument xDocument = new XDocument(xElement);
+                xDocument.Save(MessageInfoFileName);
             }
+        }
+        private void SaveImplementers()
+        {
+            if (Implementers != null)
+            {
+                var xElement = new XElement("Implementers");
+                foreach (var implementer in Implementers)
+                {
+                    xElement.Add(new XElement("Implementer",
+                    new XAttribute("Id", implementer.Id),
+                    new XElement("ImplementerFIO", implementer.ImplementerFIO),
+                    new XElement("WorkingTime", implementer.WorkingTime),
+                    new XElement("PauseTime", implementer.PauseTime)));
+                }
+                XDocument xDocument = new XDocument(xElement);
+                xDocument.Save(ImplementerFileName);
+            }
+        }
 
         private void SaveClients()
         {
@@ -234,7 +283,9 @@ namespace SoftShopFileImplement
                 var xElement = new XElement("Orders");
                 foreach (var order in Orders)
                 {
-                    xElement.Add(new XElement("Order",
+                    xElement.Add(new
+
+                    XElement("Order",
                     new XAttribute("Id", order.Id),
                     new XElement("PackId", order.PackId),
                     new XElement("ClientId", order.ClientId),

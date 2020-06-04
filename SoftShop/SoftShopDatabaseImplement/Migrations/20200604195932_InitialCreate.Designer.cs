@@ -10,7 +10,7 @@ using SoftShopDatabaseImplement;
 namespace SoftShopDatabaseImplement.Migrations
 {
     [DbContext(typeof(SoftShopDatabase))]
-    [Migration("20200604190257_InitialCreate")]
+    [Migration("20200604195932_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -64,6 +64,33 @@ namespace SoftShopDatabaseImplement.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Implementers");
+                });
+
+            modelBuilder.Entity("SoftShopDatabaseImplement.Models.MessageInfo", b =>
+                {
+                    b.Property<string>("MessageId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Body")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ClientId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateDelivery")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("SenderName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Subject")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MessageId");
+
+                    b.HasIndex("ClientId");
+
+                    b.ToTable("MessageInfoes");
                 });
 
             modelBuilder.Entity("SoftShopDatabaseImplement.Models.Order", b =>
@@ -166,6 +193,13 @@ namespace SoftShopDatabaseImplement.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Softs");
+                });
+
+            modelBuilder.Entity("SoftShopDatabaseImplement.Models.MessageInfo", b =>
+                {
+                    b.HasOne("SoftShopDatabaseImplement.Models.Client", "Client")
+                        .WithMany("MessageInfoes")
+                        .HasForeignKey("ClientId");
                 });
 
             modelBuilder.Entity("SoftShopDatabaseImplement.Models.Order", b =>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SoftShopBusinessLogic.BindingModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
@@ -15,5 +16,6 @@ namespace SoftShopDatabaseImplement.Models
         [Required]
         public string Password { get; set; }
         public List<Order> Orders { get; set; }
+        public List<MessageInfo> MessageInfoes { get; set; }
     }
 }  
