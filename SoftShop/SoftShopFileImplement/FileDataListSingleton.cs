@@ -13,12 +13,12 @@ namespace SoftShopFileImplement
     public class FileDataListSingleton
     {
         private static FileDataListSingleton instance;
-        private readonly string SoftFileName = "C:\\Users\\masha\\source\\Semestr2\\SoftShop\\Soft.xml";
-        private readonly string OrderFileName = "C:\\Users\\masha\\source\\Semestr2\\SoftShop\\Order.xml";
-        private readonly string PackFileName = "C:\\Users\\masha\\source\\Semestr2\\SoftShop\\Pack.xml";
-        private readonly string PackSoftFileName = "C:\\Users\\masha\\source\\Semestr2\\SoftShop\\PackSoft.xml";
-        private readonly string WarehouseFileName = "C:\\Users\\masha\\source\\Semestr2\\SoftShop\\Warehouse.xml";
-        private readonly string WarehouseSoftFileName = "C:\\Users\\masha\\source\\Semestr2\\SoftShop\\WarehouseSoft.xml";
+        private readonly string SoftFileName = "C:\\Users\\iliya\\source\\Semestr 2 TP\\SoftShop\\Soft.xml";
+        private readonly string OrderFileName = "C:\\Users\\iliya\\source\\Semestr 2 TP\\SoftShop\\Order.xml";
+        private readonly string PackFileName = "C:\\Users\\iliya\\source\\Semestr 2 TP\\SoftShop\\Pack.xml";
+        private readonly string PackSoftFileName = "C:\\Users\\iliya\\source\\Semestr 2 TP\\SoftShop\\PackSoft.xml";
+        private readonly string WarehouseFileName = "C:\\Users\\iliya\\source\\Semestr 2 TP\\SoftShop\\Warehouse.xml";
+        private readonly string WarehouseSoftFileName = "C:\\Users\\iliya\\source\\Semestr 2 TP\\SoftShop\\WarehouseSoft.xml";
         public List<Soft> Softs { get; set; }
         public List<Order> Orders { get; set; }
         public List<Pack> Packs { get; set; }
