@@ -11,13 +11,13 @@ namespace SoftShopFileImplement
     public class FileDataListSingleton
     {
         private static FileDataListSingleton instance;
-        private readonly string SoftFileName = "C:\\Users\\masha\\source\\Semestr2\\SoftShop\\Soft.xml";
-        private readonly string OrderFileName = "C:\\Users\\masha\\source\\Semestr2\\SoftShop\\Order.xml";
-        private readonly string PackFileName = "C:\\Users\\masha\\source\\Semestr2\\SoftShop\\Pack.xml";
-        private readonly string PackSoftFileName = "C:\\Users\\masha\\source\\Semestr2\\SoftShop\\PackSoft.xml";
-        private readonly string ClientFileName = "C:\\Users\\masha\\source\\Semestr2\\SoftShop\\Client.xml";
-        private readonly string ImplementerFileName = "C:\\Users\\masha\\source\\Semestr2\\SoftShop\\Implementer.xml";
-        private readonly string MessageInfoFileName = "C:\\Users\\masha\\source\\Semestr2\\SoftShop\\MessageInfo.xml";
+        private readonly string SoftFileName = "C:\\Users\\iliya\\source\\Semestr 2 TP\\SoftShop\\Soft.xml";
+        private readonly string OrderFileName = "C:\\Users\\iliya\\source\\Semestr 2 TP\\SoftShop\\Order.xml";
+        private readonly string PackFileName = "C:\\Users\\iliya\\source\\Semestr 2 TP\\SoftShop\\Pack.xml";
+        private readonly string PackSoftFileName = "C:\\Users\\iliya\\source\\Semestr 2 TP\\SoftShop\\PackSoft.xml";
+        private readonly string ClientFileName = "C:\\Users\\iliya\\source\\Semestr 2 TP\\SoftShop\\Client.xml";
+        private readonly string ImplementerFileName = "C:\\Users\\iliya\\source\\Semestr 2 TP\\SoftShop\\Implementer.xml";
+        private readonly string MessageInfoFileName = "C:\\Users\\iliya\\source\\Semestr 2 TP\\SoftShop\\MessageInfo.xml";
         public List<Soft> Softs { get; set; }
         public List<Order> Orders { get; set; }
         public List<Pack> Packs { get; set; }
@@ -128,9 +128,7 @@ namespace SoftShopFileImplement
                     list.Add(new Soft
                     {
                         Id = Convert.ToInt32(elem.Attribute("Id").Value),
-                        SoftName =
-
-                    elem.Element("SoftName").Value
+                        SoftName = elem.Element("SoftName").Value
                     });
                 }
             }

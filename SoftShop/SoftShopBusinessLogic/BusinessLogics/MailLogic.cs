@@ -86,6 +86,8 @@ namespace SoftShopBusinessLogic.BusinessLogics
                 {
                     client.Connect(info.PopHost, info.PopPort,
                     SecureSocketOptions.SslOnConnect);
+                    client.AuthenticationMechanisms.Remove("XOAUTH2");
+                    client.AuthenticationMechanisms.Remove("NTLM");
                     client.Authenticate(mailLogin, mailPassword);
                     for (int i = 0; i < client.Count; i++)
                     {

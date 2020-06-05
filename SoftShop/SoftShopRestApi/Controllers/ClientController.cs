@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using SoftShopBusinessLogic.BindingModels;
 using SoftShopBusinessLogic.Interfaces;
 using SoftShopBusinessLogic.ViewModels;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
-namespace SoftShopRestApi.Controllers
+namespace DinerRestApi.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
@@ -33,6 +31,8 @@ namespace SoftShopRestApi.Controllers
             Email = login,
             Password = password
         })?[0];
+        [HttpGet]
+        public List<MessageInfoViewModel> GetMessages(int clientId) => _messageLogic.Read(new MessageInfoBindingModel { ClientId = clientId });
         [HttpPost]
         public void Register(ClientBindingModel model)
         {
@@ -53,8 +53,8 @@ namespace SoftShopRestApi.Controllers
             }
 
             if (model.Password.Length > _passwordMaxLength
-            || model.Password.Length < _passwordMinLength
-            || !Regex.IsMatch(model.Password, @"^((\w+\d+\W+)|(\w+\W+\d+)|(\d+\w+\W+)|(\d+\W+\w+)|(\W+\w+\d+)|(\W+\d+\w+))[\w\d\W]*$"))
+                || model.Password.Length < _passwordMinLength
+                || !Regex.IsMatch(model.Password, @"^((\w+\d+\W+)|(\w+\W+\d+)|(\d+\w+\W+)|(\d+\W+\w+)|(\W+\w+\d+)|(\W+\d+\w+))[\w\d\W]*$"))
             {
                 throw new Exception($"Пароль должен быть длиной от {_passwordMinLength} до { _passwordMaxLength } и должен состоять из цифр, букв и небуквенных символов");
             }
