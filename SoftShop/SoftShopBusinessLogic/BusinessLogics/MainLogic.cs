@@ -42,21 +42,24 @@ namespace SoftShopBusinessLogic.BusinessLogics
             {
                 throw new Exception("Заказ не в статусе \"Принят\"");
             }
-            if (!warehouseLogic.CheckSoftsAvailability(order.PackId, order.Count))
+            try
             {
-                throw new Exception("На складах не хватает по");
+                warehouseLogic.RemoveFromWarehouse(order.PackId, order.Count);
+                orderLogic.CreateOrUpdate(new OrderBindingModel
+                {
+                    Id = order.Id,
+                    PackId = order.PackId,
+                    Count = order.Count,
+                    Sum = order.Sum,
+                    DateCreate = order.DateCreate,
+                    DateImplement = DateTime.Now,
+                    Status = OrderStatus.Выполняется
+                });
             }
-            orderLogic.CreateOrUpdate(new OrderBindingModel
+            catch (Exception ex)
             {
-                Id = order.Id,
-                PackId = order.PackId,
-                Count = order.Count,
-                Sum = order.Sum,
-                DateCreate = order.DateCreate,
-                DateImplement = DateTime.Now,
-                Status = OrderStatus.Выполняется
-            });
-            warehouseLogic.RemoveFromWarehouse(order.PackId, order.Count);
+                throw ex;
+            }
         }
 
         public void FinishOrder(ChangeStatusBindingModel model)

@@ -24,7 +24,7 @@ namespace SoftShopListImplement.Implements
             foreach (var Soft in source.Softs)
             {
                 if (Soft.SoftName == model.SoftName && Soft.Id !=
-               model.Id)
+                model.Id)
                 {
                     throw new Exception("Уже есть по с таким названием");
                 }

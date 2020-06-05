@@ -13,8 +13,7 @@ namespace SoftShopBusinessLogic.Interfaces
         void AddElement(WarehouseBindingModel model);
         void UpdElement(WarehouseBindingModel model);
         void DelElement(int id);
-        void FillWarehouse(WarehouseSoftBindingModel model);
-        bool CheckSoftsAvailability(int packId, int packsCount);
+        void FillWarehouse(WarehouseSoftBindingModel model);  
         void RemoveFromWarehouse(int packId, int packsCount);
     }
 }

@@ -10,7 +10,7 @@ using SoftShopDatabaseImplement;
 namespace SoftShopDatabaseImplement.Migrations
 {
     [DbContext(typeof(SoftShopDatabase))]
-    [Migration("20200604165550_InitialCreate")]
+    [Migration("20200605051446_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -113,6 +113,47 @@ namespace SoftShopDatabaseImplement.Migrations
                     b.ToTable("Softs");
                 });
 
+            modelBuilder.Entity("SoftShopDatabaseImplement.Models.Warehouse", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("WarehouseName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Warehouses");
+                });
+
+            modelBuilder.Entity("SoftShopDatabaseImplement.Models.WarehouseSoft", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SoftId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WarehouseId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SoftId");
+
+                    b.HasIndex("WarehouseId");
+
+                    b.ToTable("WarehouseSofts");
+                });
+
             modelBuilder.Entity("SoftShopDatabaseImplement.Models.Order", b =>
                 {
                     b.HasOne("SoftShopDatabaseImplement.Models.Pack", "Pack")
@@ -133,6 +174,21 @@ namespace SoftShopDatabaseImplement.Migrations
                     b.HasOne("SoftShopDatabaseImplement.Models.Soft", "Soft")
                         .WithMany("PackSofts")
                         .HasForeignKey("SoftId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("SoftShopDatabaseImplement.Models.WarehouseSoft", b =>
+                {
+                    b.HasOne("SoftShopDatabaseImplement.Models.Soft", "Soft")
+                        .WithMany()
+                        .HasForeignKey("SoftId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SoftShopDatabaseImplement.Models.Warehouse", "Warehouse")
+                        .WithMany("WarehouseSofts")
+                        .HasForeignKey("WarehouseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

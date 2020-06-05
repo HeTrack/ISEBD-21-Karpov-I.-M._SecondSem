@@ -29,13 +29,13 @@ namespace SoftShopView
             var currentContainer = new UnityContainer();
 
             currentContainer.RegisterType<ISoftLogic, SoftLogic>(new
-           HierarchicalLifetimeManager());
+            HierarchicalLifetimeManager());
             currentContainer.RegisterType<IOrderLogic, OrderLogic>(new
-HierarchicalLifetimeManager());
+            HierarchicalLifetimeManager());
             currentContainer.RegisterType<IPackLogic, PackLogic>(new
-           HierarchicalLifetimeManager());
+            HierarchicalLifetimeManager());
             currentContainer.RegisterType<IWarehouseLogic, WarehouseLogic>(new
-HierarchicalLifetimeManager());
+            HierarchicalLifetimeManager());
             currentContainer.RegisterType<MainLogic>(new HierarchicalLifetimeManager());
             return currentContainer;
         }

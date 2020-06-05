@@ -5,6 +5,7 @@ using SoftShopBusinessLogic.BindingModels;
 using SoftShopBusinessLogic.Interfaces;
 using SoftShopBusinessLogic.ViewModels;
 using System.Linq;
+using SoftShopFileImplement;
 using SoftShopFileImplement.Models;
 
 namespace SoftShopFileImplement.Implements
@@ -19,7 +20,7 @@ namespace SoftShopFileImplement.Implements
         public void CreateOrUpdate(SoftBindingModel model)
         {
             Soft element = source.Softs.FirstOrDefault(rec => rec.SoftName
-           == model.SoftName && rec.Id != model.Id);
+            == model.SoftName && rec.Id != model.Id);
             if (element != null)
             {
                 throw new Exception("Уже есть ПО с таким названием");
@@ -35,7 +36,7 @@ namespace SoftShopFileImplement.Implements
             else
             {
                 int maxId = source.Softs.Count > 0 ? source.Softs.Max(rec =>
-               rec.Id) : 0;
+                rec.Id) : 0;
                 element = new Soft { Id = maxId + 1 };
                 source.Softs.Add(element);
             }
@@ -44,7 +45,7 @@ namespace SoftShopFileImplement.Implements
         public void Delete(SoftBindingModel model)
         {
             Soft element = source.Softs.FirstOrDefault(rec => rec.Id ==
-           model.Id);
+            model.Id);
             if (element != null)
             {
                 source.Softs.Remove(element);

@@ -130,7 +130,7 @@ namespace SoftShopListImplement.Implements
         private PackViewModel CreateViewModel(Pack Pack)
         {
             Dictionary<int, (string, int)> PackSofts = new Dictionary<int,
-    (string, int)>();
+            (string, int)>();
             foreach (var pc in source.PackSofts)
             {
                 if (pc.PackId == Pack.Id)

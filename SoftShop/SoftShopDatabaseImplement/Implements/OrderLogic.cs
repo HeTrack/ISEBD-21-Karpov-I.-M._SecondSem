@@ -20,7 +20,7 @@ namespace SoftShopDatabaseImplement.Implements
                 if (model.Id.HasValue)
                 {
                     element = context.Orders.FirstOrDefault(rec => rec.Id ==
-                   model.Id);
+                    model.Id);
                     if (element == null)
                     {
                         throw new Exception("Элемент не найден");
@@ -46,7 +46,7 @@ namespace SoftShopDatabaseImplement.Implements
             using (var context = new SoftShopDatabase())
             {
                 Order element = context.Orders.FirstOrDefault(rec => rec.Id ==
-               model.Id);
+                model.Id);
                 if (element != null)
                 {
                     context.Orders.Remove(element);
@@ -65,18 +65,19 @@ namespace SoftShopDatabaseImplement.Implements
             {
                 return context.Orders
                 .Include(rec => rec.Pack)
-            .Where(rec => model == null || rec.Id == model.Id)
-            .Select(rec => new OrderViewModel
-            {
-                Id = rec.Id,
-                PackName = rec.Pack.PackName,
-                Count = rec.Count,
-                Sum = rec.Sum,
-                Status = rec.Status,
-                DateCreate = rec.DateCreate,
-                DateImplement = rec.DateImplement
-            })
-            .ToList();
+                .Where(rec => model == null || rec.Id == model.Id)
+                .Select(rec => new OrderViewModel
+                {
+                    Id = rec.Id,
+                    PackName = rec.Pack.PackName,
+                    PackId = rec.Pack.Id,
+                    Count = rec.Count,
+                    Sum = rec.Sum,
+                    Status = rec.Status,
+                    DateCreate = rec.DateCreate,
+                    DateImplement = rec.DateImplement
+                })
+                .ToList();
             }
         }
     }

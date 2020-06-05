@@ -35,6 +35,19 @@ namespace SoftShopDatabaseImplement.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Warehouses",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    WarehouseName = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Warehouses", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Orders",
                 columns: table => new
                 {
@@ -85,6 +98,33 @@ namespace SoftShopDatabaseImplement.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "WarehouseSofts",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    WarehouseId = table.Column<int>(nullable: false),
+                    SoftId = table.Column<int>(nullable: false),
+                    Count = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_WarehouseSofts", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_WarehouseSofts_Softs_SoftId",
+                        column: x => x.SoftId,
+                        principalTable: "Softs",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_WarehouseSofts_Warehouses_WarehouseId",
+                        column: x => x.WarehouseId,
+                        principalTable: "Warehouses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_PackId",
                 table: "Orders",
@@ -99,6 +139,16 @@ namespace SoftShopDatabaseImplement.Migrations
                 name: "IX_PackSofts_SoftId",
                 table: "PackSofts",
                 column: "SoftId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_WarehouseSofts_SoftId",
+                table: "WarehouseSofts",
+                column: "SoftId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_WarehouseSofts_WarehouseId",
+                table: "WarehouseSofts",
+                column: "WarehouseId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -110,10 +160,16 @@ namespace SoftShopDatabaseImplement.Migrations
                 name: "PackSofts");
 
             migrationBuilder.DropTable(
+                name: "WarehouseSofts");
+
+            migrationBuilder.DropTable(
                 name: "Packs");
 
             migrationBuilder.DropTable(
                 name: "Softs");
+
+            migrationBuilder.DropTable(
+                name: "Warehouses");
         }
     }
 }
