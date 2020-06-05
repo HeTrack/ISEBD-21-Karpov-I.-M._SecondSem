@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SoftShopBusinessLogic.Attributes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.Serialization;
@@ -7,18 +8,22 @@ using System.Text;
 namespace SoftShopBusinessLogic.ViewModels
 {
     [DataContract]
-    public class ClientViewModel
+    public class ClientViewModel : BaseViewModel
+
     {
-        [DataMember]
-        public int Id { get; set; }
-        [DataMember]
-        [DisplayName("ФИО")]
+        [Column(title: "ФИО клиента", gridViewAutoSize: GridViewAutoSize.Fill)]
+        [DataMember]       
         public string ClientFIO { get; set; }
+        [Column(title: "Почта", width: 150)]
         [DataMember]
-        [DisplayName("Логин")]
         public string Email { get; set; }
         [DataMember]
-        [DisplayName("Пароль")]
         public string Password { get; set; }
+        public override List<string> Properties() => new List<string>
+        {
+            "Id",
+            "ClientFIO",
+            "Email"
+        };
     }
 }
