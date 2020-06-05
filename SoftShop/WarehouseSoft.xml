@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WarehouseSofts>
+  <WarehouseSoft Id="1">
+    <SoftId>1</SoftId>
+    <StorageId>1</StorageId>
+    <Count>1</Count>
+  </WarehouseSoft>
+  <WarehouseSoft Id="2">
+    <SoftId>2</SoftId>
+    <StorageId>1</StorageId>
+    <Count>0</Count>
+  </WarehouseSoft>
+</WarehouseSofts>

@@ -10,5 +10,14 @@
     <SoftId>2</SoftId>
     <Count>1</Count>
   </PackSoft>
+  <PackSoft Id="3">
+    <PackId>5</PackId>
+    <SoftId>3</SoftId>
+    <Count>1</Count>
+  </PackSoft>
+  <PackSoft Id="4">
+    <PackId>5</PackId>
+    <SoftId>4</SoftId>
+    <Count>1</Count>
+  </PackSoft>
 </PackSofts>
-

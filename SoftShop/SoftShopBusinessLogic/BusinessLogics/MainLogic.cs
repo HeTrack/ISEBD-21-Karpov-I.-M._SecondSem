@@ -10,9 +10,11 @@ namespace SoftShopBusinessLogic.BusinessLogics
     public class MainLogic
     {
         private readonly IOrderLogic orderLogic;
-        public MainLogic(IOrderLogic orderLogic)
+        private readonly IWarehouseLogic warehouseLogic;
+        public MainLogic(IOrderLogic orderLogic, IWarehouseLogic warehouseLogic)
         {
             this.orderLogic = orderLogic;
+            this.warehouseLogic = warehouseLogic;
         }
         public void CreateOrder(CreateOrderBindingModel model)
         {
@@ -40,6 +42,10 @@ namespace SoftShopBusinessLogic.BusinessLogics
             {
                 throw new Exception("Заказ не в статусе \"Принят\"");
             }
+            if (!warehouseLogic.CheckSoftsAvailability(order.PackId, order.Count))
+            {
+                throw new Exception("На складах не хватает по");
+            }
             orderLogic.CreateOrUpdate(new OrderBindingModel
             {
                 Id = order.Id,
@@ -50,6 +56,7 @@ namespace SoftShopBusinessLogic.BusinessLogics
                 DateImplement = DateTime.Now,
                 Status = OrderStatus.Выполняется
             });
+            warehouseLogic.RemoveFromWarehouse(order.PackId, order.Count);
         }
 
         public void FinishOrder(ChangeStatusBindingModel model)
@@ -101,6 +108,10 @@ namespace SoftShopBusinessLogic.BusinessLogics
                 DateImplement = order.DateImplement,
                 Status = OrderStatus.Оплачен
             });
+        }
+        public void FillWarehouse(WarehouseSoftBindingModel model)
+        {
+            warehouseLogic.FillWarehouse(model);
         }
     }
 }
