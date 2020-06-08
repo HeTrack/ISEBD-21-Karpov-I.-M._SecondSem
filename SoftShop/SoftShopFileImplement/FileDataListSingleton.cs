@@ -17,6 +17,7 @@ namespace SoftShopFileImplement
         private readonly string PackFileName = "C:\\Users\\iliya\\source\\Semestr 2 TP\\SoftShop\\Pack.xml";
         private readonly string PackSoftFileName = "C:\\Users\\iliya\\source\\Semestr 2 TP\\SoftShop\\PackSoft.xml";
         private readonly string ClientFileName = "C:\\Users\\iliya\\source\\Semestr 2 TP\\SoftShop\\Client.xml";
+
         public List<Soft> Softs { get; set; }
         public List<Order> Orders { get; set; }
         public List<Pack> Packs { get; set; }
