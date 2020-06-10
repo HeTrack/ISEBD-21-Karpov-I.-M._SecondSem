@@ -10,6 +10,8 @@ namespace SoftShopBusinessLogic.ViewModels
         public int Id { get; set; }
         public int WarehouseId { get; set; }
         public int SoftId { get; set; }
+        [DisplayName("Название склада")]
+        public string WarehouseName { get; set; }
         [DisplayName("Название ПО")]
         public string SoftName { get; set; }
         [DisplayName("Количество")]

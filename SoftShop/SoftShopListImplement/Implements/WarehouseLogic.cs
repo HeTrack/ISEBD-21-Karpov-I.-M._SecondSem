@@ -22,7 +22,7 @@ namespace SoftShopListImplement.Implements
             for (int i = 0; i < source.Warehouses.Count; ++i)
             {
                 List<WarehouseSoftViewModel> WarehouseSofts = new
-                List<WarehouseSoftViewModel>();
+    List<WarehouseSoftViewModel>();
                 for (int j = 0; j < source.WarehouseSofts.Count; ++j)
                 {
                     if (source.WarehouseSofts[j].WarehouseId == source.Warehouses[i].Id)
@@ -31,7 +31,7 @@ namespace SoftShopListImplement.Implements
                         for (int k = 0; k < source.Softs.Count; ++k)
                         {
                             if (source.WarehouseSofts[j].SoftId ==
-                            source.Softs[k].Id)
+                           source.Softs[k].Id)
                             {
                                 SoftName = source.Softs[k].SoftName;
                                 break;
@@ -56,13 +56,12 @@ namespace SoftShopListImplement.Implements
             }
             return result;
         }
-
         public WarehouseViewModel GetElement(int id)
         {
             for (int i = 0; i < source.Warehouses.Count; ++i)
             {
                 List<WarehouseSoftViewModel> WarehouseSofts = new
-                List<WarehouseSoftViewModel>();
+    List<WarehouseSoftViewModel>();
                 for (int j = 0; j < source.WarehouseSofts.Count; ++j)
                 {
                     if (source.WarehouseSofts[j].WarehouseId == source.Warehouses[i].Id)
@@ -71,7 +70,7 @@ namespace SoftShopListImplement.Implements
                         for (int k = 0; k < source.Softs.Count; ++k)
                         {
                             if (source.WarehouseSofts[j].SoftId ==
-                            source.Softs[k].Id)
+                           source.Softs[k].Id)
                             {
                                 SoftName = source.Softs[k].SoftName;
                                 break;
@@ -139,7 +138,6 @@ namespace SoftShopListImplement.Implements
                 throw new Exception("Элемент не найден");
             }
             source.Warehouses[index].WarehouseName = model.WarehouseName;
-
         }
         public void DelElement(int id)
         {
@@ -160,19 +158,15 @@ namespace SoftShopListImplement.Implements
             }
             throw new Exception("Элемент не найден");
         }
-
         public bool CheckSoftsAvailability(int PackId, int PacksCount)
         {
             bool result = true;
-            var PackSofts = source.PackSofts.Where(x =>
-
-            x.PackId == PackId);
+            var PackSofts = source.PackSofts.Where(x => x.PackId == PackId);
             if (PackSofts.Count() == 0) return false;
             foreach (var elem in PackSofts)
             {
                 int count = 0;
                 count = source.WarehouseSofts.FindAll(x => x.SoftId == elem.SoftId).Sum(x => x.Count);
-
                 if (count < elem.Count * PacksCount)
                     return false;
             }
@@ -185,8 +179,8 @@ namespace SoftShopListImplement.Implements
             foreach (var elem in PackSofts)
             {
                 int left = elem.Count * PacksCount;
-                var storageSofts = source.WarehouseSofts.FindAll(x => x.SoftId == elem.SoftId);
-                foreach (var rec in storageSofts)
+                var warehouseSofts = source.WarehouseSofts.FindAll(x => x.SoftId == elem.SoftId);
+                foreach (var rec in warehouseSofts)
                 {
                     int toRemove = left > rec.Count ? rec.Count : left;
                     rec.Count -= toRemove;
@@ -202,7 +196,7 @@ namespace SoftShopListImplement.Implements
             for (int i = 0; i < source.WarehouseSofts.Count; ++i)
             {
                 if (source.WarehouseSofts[i].SoftId == model.SoftId
-                && source.WarehouseSofts[i].WarehouseId == model.WarehouseId)
+                    && source.WarehouseSofts[i].WarehouseId == model.WarehouseId)
                 {
                     foundItemIndex = i;
                     break;
@@ -211,7 +205,7 @@ namespace SoftShopListImplement.Implements
             if (foundItemIndex != -1)
             {
                 source.WarehouseSofts[foundItemIndex].Count =
-                source.WarehouseSofts[foundItemIndex].Count + model.Count;
+                    source.WarehouseSofts[foundItemIndex].Count + model.Count;
             }
             else
             {

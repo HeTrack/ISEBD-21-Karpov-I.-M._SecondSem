@@ -1,4 +1,7 @@
-﻿using System;
+﻿using SoftShopBusinessLogic.BindingModels;
+using SoftShopBusinessLogic.BusinessLogics;
+using SoftShopBusinessLogic.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,9 +10,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using SoftShopBusinessLogic.BindingModels;
-using SoftShopBusinessLogic.BusinessLogics;
-using SoftShopBusinessLogic.Interfaces;
 using Unity;
 
 namespace SoftShopView
@@ -20,18 +20,18 @@ namespace SoftShopView
         public new IUnityContainer Container { get; set; }
         private readonly MainLogic logic;
         private readonly IOrderLogic orderLogic;
-        public FormMain(MainLogic logic, IOrderLogic orderLogic)
+        private readonly ReportLogic report;
+        public FormMain(MainLogic logic, IOrderLogic orderLogic, ReportLogic report)
         {
             InitializeComponent();
             this.logic = logic;
+            this.report = report;
             this.orderLogic = orderLogic;
         }
-
         private void FormMain_Load(object sender, EventArgs e)
         {
             LoadData();
         }
-
         private void LoadData()
         {
             try
@@ -51,27 +51,23 @@ namespace SoftShopView
                MessageBoxIcon.Error);
             }
         }
-
-        private void поToolStripMenuItem_Click(object sender, EventArgs e)
+        private void пакетыToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormSofts>();
             form.ShowDialog();
         }
-
-        private void пакетыToolStripMenuItem_Click(object sender, EventArgs e)
+        private void поToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormPacks>();
             form.ShowDialog();
         }
-
-        private void buttonCreateOrder_Click(object sender, EventArgs e)
+        private void ButtonCreateOrder_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormCreateOrder>();
             form.ShowDialog();
             LoadData();
         }
-
-        private void buttonTakeOrderInWork_Click(object sender, EventArgs e)
+        private void ButtonTakeOrderInWork_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
@@ -88,8 +84,7 @@ namespace SoftShopView
                 }
             }
         }
-
-        private void buttonOrderReady_Click(object sender, EventArgs e)
+        private void ButtonOrderReady_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
@@ -109,8 +104,7 @@ namespace SoftShopView
                 }
             }
         }
-
-        private void buttonPayOrder_Click(object sender, EventArgs e)
+        private void ButtonPayOrder_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
@@ -127,24 +121,66 @@ namespace SoftShopView
                 }
             }
         }
-
-        private void buttonRef_Click(object sender, EventArgs e)
+        private void ButtonRef_Click(object sender, EventArgs e)
         {
             LoadData();
         }
-
-        private void СкладыToolStripMenuItem_Click(object sender, EventArgs e)
+        private void списокПакетовToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormWarehouses>();
+            using (var dialog = new SaveFileDialog { Filter = "docx|*.docx" })
+            {
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    report.SavePacksToWordFile(new ReportBindingModel
+                    {
+                        FileName =
+                   dialog.FileName
+                    });
+                    MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
+                   MessageBoxIcon.Information);
+                }
+            }
+        }
+        private void списокЗаказовToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormReportOrders>();
             form.ShowDialog();
         }
-
-        private void ПополнитьСкладToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ПОвПакетахToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormReportPackSofts>();
+            form.ShowDialog();
+        }
+        private void СкладыСпоToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormReportWarehouseSofts>();
+            form.ShowDialog();
+        }
+        private void списокСкладовToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var dialog = new SaveFileDialog { Filter = "docx|*.docx" })
+            {
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    report.SaveWarehousesToWordFile(new ReportBindingModel { FileName = dialog.FileName });
+                    MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+        private void пополнитьСкладыToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormFillWarehouse>();
             form.ShowDialog();
         }
-
-       
+        private void складыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormWarehouses>();
+            form.ShowDialog();
+        }
+        private void списокПОпоСкладамToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormReportSofts>();
+            form.ShowDialog();
+        }
     }
 }

@@ -36,9 +36,7 @@ namespace SoftShopView
                     {
                         textBoxName.Text = view.WarehouseName;
                     }
-
                     var warehouseList = logic.GetList();
-
                     var warehouseSofts = warehouseList[0].WarehouseSofts;
                     for (int i = 0; i < warehouseList.Count; ++i)
                     {
@@ -54,7 +52,6 @@ namespace SoftShopView
                         dataGridView.Columns[1].Visible = false;
                         dataGridView.Columns[2].Visible = false;
                         dataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-
                     }
                 }
                 catch (Exception ex)
@@ -64,8 +61,6 @@ namespace SoftShopView
                 }
             }
         }
-
-
         private void buttonSave_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBoxName.Text))

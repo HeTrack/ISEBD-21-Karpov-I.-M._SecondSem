@@ -32,7 +32,7 @@ namespace SoftShopFileImplement.Implements
                     Count = x.Count
                 }).ToList()
             })
-            .ToList();
+                .ToList();
         }
         public WarehouseViewModel GetElement(int id)
         {
@@ -107,7 +107,7 @@ namespace SoftShopFileImplement.Implements
         public void FillWarehouse(WarehouseSoftBindingModel model)
         {
             var item = source.WarehouseSofts.FirstOrDefault(x => x.SoftId == model.SoftId
-            && x.WarehouseId == model.WarehouseId);
+                    && x.WarehouseId == model.WarehouseId);
 
             if (item != null)
             {
@@ -134,10 +134,10 @@ namespace SoftShopFileImplement.Implements
             foreach (var elem in PackSofts)
             {
                 int count = 0;
-                var storageSofts = source.WarehouseSofts.FindAll(x => x.SoftId == elem.SoftId);
-                count = storageSofts.Sum(x => x.Count);
+                var warehouseSofts = source.WarehouseSofts.FindAll(x => x.SoftId == elem.SoftId);
+                count = warehouseSofts.Sum(x => x.Count);
                 if (count < elem.Count * PacksCount)
-                    result = false;
+                    return false;
             }
             return result;
         }
@@ -149,12 +149,10 @@ namespace SoftShopFileImplement.Implements
             foreach (var elem in PackSofts)
             {
                 int left = elem.Count * PacksCount;
-                var storageSofts = source.WarehouseSofts.FindAll(x => x.SoftId == elem.SoftId);
-                foreach (var rec in storageSofts)
+                var warehouseSofts = source.WarehouseSofts.FindAll(x => x.SoftId == elem.SoftId);
+                foreach (var rec in warehouseSofts)
                 {
-                    int
-
-                    toRemove = left > rec.Count ? rec.Count : left;
+                    int toRemove = left > rec.Count ? rec.Count : left;
                     rec.Count -= toRemove;
                     left -= toRemove;
                     if (left == 0) break;

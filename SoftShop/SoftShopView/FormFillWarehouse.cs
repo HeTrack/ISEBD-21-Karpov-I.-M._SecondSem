@@ -17,38 +17,36 @@ namespace SoftShopView
     public partial class FormFillWarehouse : Form
     {
         [Dependency]
-        public new IUnityContainer Container { get; set; }
-        private readonly ISoftLogic logicF;
+        public new Unity.IUnityContainer Container { get; set; }
+        private readonly ISoftLogic logicS;
         private readonly MainLogic logicM;
-        private readonly IWarehouseLogic logicS;
-        public FormFillWarehouse(ISoftLogic logicF, MainLogic logicM, IWarehouseLogic logicS)
+        private readonly IWarehouseLogic logicW;
+        public FormFillWarehouse(ISoftLogic logicS, MainLogic logicM, IWarehouseLogic logicW)
         {
             InitializeComponent();
-            this.logicF = logicF;
-            this.logicM = logicM;
             this.logicS = logicS;
+            this.logicM = logicM;
+            this.logicW = logicW;
         }
         private void FormFillWarehouse_Load(object sender, EventArgs e)
         {
             try
             {
-                var warehouseList = logicS.GetList();
+                var warehouseList = logicW.GetList();
                 comboBoxWarehouse.DataSource = warehouseList;
                 comboBoxWarehouse.DisplayMember = "WarehouseName";
                 comboBoxWarehouse.ValueMember = "Id";
-
-                var softList = logicF.Read(null);
-                comboBoxSoft.DataSource = softList;
+                var SoftList = logicS.Read(null);
+                comboBoxSoft.DataSource = SoftList;
                 comboBoxSoft.DisplayMember = "SoftName";
                 comboBoxSoft.ValueMember = "Id";
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-               MessageBoxIcon.Error);
+                MessageBoxIcon.Error);
             }
         }
-
         private void buttonSave_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBoxCount.Text))
@@ -57,21 +55,18 @@ namespace SoftShopView
                MessageBoxIcon.Error);
                 return;
             }
-
             if (comboBoxWarehouse.SelectedValue == null)
             {
                 MessageBox.Show("Выберите склад", "Ошибка", MessageBoxButtons.OK,
 MessageBoxIcon.Error);
                 return;
             }
-
             if (comboBoxSoft.SelectedValue == null)
             {
-                MessageBox.Show("Выберите по", "Ошибка", MessageBoxButtons.OK,
+                MessageBox.Show("Выберите ПО", "Ошибка", MessageBoxButtons.OK,
 MessageBoxIcon.Error);
                 return;
             }
-
             try
             {
                 int warehouseId = Convert.ToInt32(comboBoxWarehouse.SelectedValue);
@@ -93,7 +88,6 @@ MessageBoxIcon.Error);
             }
             Close();
         }
-
         private void buttonCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;

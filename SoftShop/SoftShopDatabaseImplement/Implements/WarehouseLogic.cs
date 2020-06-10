@@ -18,24 +18,24 @@ namespace SoftShopDatabaseImplement.Implements
             {
                 return context.Warehouses
                 .ToList()
-                .Select(rec => new WarehouseViewModel
-                {
-                    Id = rec.Id,
-                    WarehouseName = rec.WarehouseName,
-                    WarehouseSofts = context.WarehouseSofts
-                .Include(recSF => recSF.Soft)
-                .Where(recSF => recSF.WarehouseId == rec.Id).
-                Select(x => new WarehouseSoftViewModel
-                {
-                    Id = x.Id,
-                    WarehouseId = x.WarehouseId,
-                    SoftId = x.SoftId,
-                    SoftName = context.Softs.FirstOrDefault(y => y.Id == x.SoftId).SoftName,
-                    Count = x.Count
-                })
-                .ToList()
-                })
-                .ToList();
+               .Select(rec => new WarehouseViewModel
+               {
+                   Id = rec.Id,
+                   WarehouseName = rec.WarehouseName,
+                   WarehouseSofts = context.WarehouseSofts
+                .Include(recWS => recWS.Soft)
+               .Where(recWS => recWS.WarehouseId == rec.Id).
+               Select(x => new WarehouseSoftViewModel
+               {
+                   Id = x.Id,
+                   WarehouseId = x.WarehouseId,
+                   SoftId = x.SoftId,
+                   SoftName = context.Softs.FirstOrDefault(y => y.Id == x.SoftId).SoftName,
+                   Count = x.Count
+               })
+               .ToList()
+               })
+            .ToList();
             }
         }
         public WarehouseViewModel GetElement(int id)
@@ -54,16 +54,16 @@ namespace SoftShopDatabaseImplement.Implements
                         Id = id,
                         WarehouseName = elem.WarehouseName,
                         WarehouseSofts = context.WarehouseSofts
-                    .Include(recSF => recSF.Soft)
-                    .Where(recSF => recSF.WarehouseId == elem.Id)
-                    .Select(x => new WarehouseSoftViewModel
-                    {
-                        Id = x.Id,
-                        WarehouseId = x.WarehouseId,
-                        SoftId = x.SoftId,
-                        SoftName = context.Softs.FirstOrDefault(y => y.Id == x.SoftId).SoftName,
-                        Count = x.Count
-                    }).ToList()
+                .Include(recWS => recWS.Soft)
+               .Where(recWS => recWS.WarehouseId == elem.Id)
+                        .Select(x => new WarehouseSoftViewModel
+                        {
+                            Id = x.Id,
+                            WarehouseId = x.WarehouseId,
+                            SoftId = x.SoftId,
+                            SoftName = context.Softs.FirstOrDefault(y => y.Id == x.SoftId).SoftName,
+                            Count = x.Count
+                        }).ToList()
                     };
                 }
             }
@@ -125,7 +125,7 @@ namespace SoftShopDatabaseImplement.Implements
             using (var context = new SoftShopDatabase())
             {
                 var item = context.WarehouseSofts.FirstOrDefault(x => x.SoftId == model.SoftId
-                && x.WarehouseId == model.WarehouseId);
+    && x.WarehouseId == model.WarehouseId);
 
                 if (item != null)
                 {
@@ -151,24 +151,19 @@ namespace SoftShopDatabaseImplement.Implements
                     try
                     {
                         var packSofts = context.PackSofts.Where(x => x.PackId == packId);
-                        if (packSofts.Count() == 0)
-                            return;
+                        if (packSofts.Count() == 0) return;
                         foreach (var elem in packSofts)
                         {
                             int left = elem.Count * packsCount;
-                            var warehouseSofts = context.WarehouseSofts.Where(x => x.SoftId == elem.SoftId);
-                            int available = warehouseSofts.Sum(x => x.Count);
-                            if (available < left)
-                                throw new
-
-                                Exception("Недостаточно продуктов на складе");
-                            foreach (var rec in warehouseSofts)
+                            var WarehouseSofts = context.WarehouseSofts.Where(x => x.SoftId == elem.SoftId);
+                            int available = WarehouseSofts.Sum(x => x.Count);
+                            if (available < left) throw new Exception("Недостаточно ПО на складе");
+                            foreach (var rec in WarehouseSofts)
                             {
                                 int toRemove = left > rec.Count ? rec.Count : left;
                                 rec.Count -= toRemove;
                                 left -= toRemove;
-                                if (left == 0)
-                                    break;
+                                if (left == 0) break;
                             }
                         }
                         context.SaveChanges();

@@ -31,7 +31,7 @@ namespace SoftShopFileImplement.Implements
             else
             {
                 int maxId = source.Orders.Count > 0 ? source.Orders.Max(rec =>
-                rec.Id) : 0;
+               rec.Id) : 0;
                 element = new Order { Id = maxId + 1 };
                 source.Orders.Add(element);
             }
@@ -45,7 +45,7 @@ namespace SoftShopFileImplement.Implements
         public void Delete(OrderBindingModel model)
         {
             Order element = source.Orders.FirstOrDefault(rec => rec.Id ==
-            model.Id);
+           model.Id);
             if (element != null)
             {
                 source.Orders.Remove(element);
@@ -58,7 +58,7 @@ namespace SoftShopFileImplement.Implements
         public List<OrderViewModel> Read(OrderBindingModel model)
         {
             return source.Orders
-            .Where(rec => model == null || rec.Id == model.Id)
+            .Where(rec => model == null || rec.Id == model.Id || (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo))
             .Select(rec => new OrderViewModel
             {
                 Id = rec.Id,

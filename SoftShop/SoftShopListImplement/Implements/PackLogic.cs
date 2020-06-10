@@ -18,19 +18,19 @@ namespace SoftShopListImplement.Implements
         public void CreateOrUpdate(PackBindingModel model)
         {
             Pack tempPack = model.Id.HasValue ? null : new Pack { Id = 1 };
-            foreach (var Pack in source.Packs)
+            foreach (var pack in source.Packs)
             {
-                if (Pack.PackName == model.PackName && Pack.Id != model.Id)
+                if (pack.PackName == model.PackName && pack.Id != model.Id)
                 {
-                    throw new Exception("Уже есть пакет с таким названием");
+                    throw new Exception("Уже есть изделие с таким названием");
                 }
-                if (!model.Id.HasValue && Pack.Id >= tempPack.Id)
+                if (!model.Id.HasValue && pack.Id >= tempPack.Id)
                 {
-                    tempPack.Id = Pack.Id + 1;
+                    tempPack.Id = pack.Id + 1;
                 }
-                else if (model.Id.HasValue && Pack.Id == model.Id)
+                else if (model.Id.HasValue && pack.Id == model.Id)
                 {
-                    tempPack = Pack;
+                    tempPack = pack;
                 }
             }
             if (model.Id.HasValue)
@@ -48,7 +48,6 @@ namespace SoftShopListImplement.Implements
         }
         public void Delete(PackBindingModel model)
         {
-            // удаляем записи по ПО при удалении пакеты
             for (int i = 0; i < source.PackSofts.Count; ++i)
             {
                 if (source.PackSofts[i].PackId == model.Id)
@@ -66,29 +65,25 @@ namespace SoftShopListImplement.Implements
             }
             throw new Exception("Элемент не найден");
         }
-        private Pack CreateModel(PackBindingModel model, Pack Pack)
+        private Pack CreateModel(PackBindingModel model, Pack pack)
         {
-            Pack.PackName = model.PackName;
-            Pack.Price = model.Price;
-            //обновляем существуюущее ПО и ищем максимальный идентификатор
-            int maxPCId = 0;
+            pack.PackName = model.PackName;
+            pack.Price = model.Price;
+            int maxSFId = 0;
             for (int i = 0; i < source.PackSofts.Count; ++i)
             {
-                if (source.PackSofts[i].Id > maxPCId)
+                if (source.PackSofts[i].Id > maxSFId)
                 {
-                    maxPCId = source.PackSofts[i].Id;
+                    maxSFId = source.PackSofts[i].Id;
                 }
-                if (source.PackSofts[i].PackId == Pack.Id)
+                if (source.PackSofts[i].PackId == pack.Id)
                 {
-                    // если в модели пришла запись ПО с таким id
                     if
                     (model.PackSofts.ContainsKey(source.PackSofts[i].SoftId))
                     {
-                        // обновляем количество
                         source.PackSofts[i].Count =
                         model.PackSofts[source.PackSofts[i].SoftId].Item2;
-                        model.PackSofts.Remove(source.PackSofts[i].PackId);
-                        // из модели убираем эту запись, чтобы остались только не просмотренные
+                        model.PackSofts.Remove(source.PackSofts[i].SoftId);
                     }
                     else
                     {
@@ -96,55 +91,53 @@ namespace SoftShopListImplement.Implements
                     }
                 }
             }
-            // новые записи
-            foreach (var pc in model.PackSofts)
+            foreach (var sf in model.PackSofts)
             {
                 source.PackSofts.Add(new PackSoft
                 {
-                    Id = ++maxPCId,
-                    PackId = Pack.Id,
-                    SoftId = pc.Key,
-                    Count = pc.Value.Item2
+                    Id = ++maxSFId,
+                    PackId = pack.Id,
+                    SoftId = sf.Key,
+                    Count = sf.Value.Item2
                 });
             }
-            return Pack;
+            return pack;
         }
         public List<PackViewModel> Read(PackBindingModel model)
         {
             List<PackViewModel> result = new List<PackViewModel>();
-            foreach (var Soft in source.Packs)
+            foreach (var soft in source.Packs)
             {
                 if (model != null)
                 {
-                    if (Soft.Id == model.Id)
+                    if (soft.Id == model.Id)
                     {
-                        result.Add(CreateViewModel(Soft));
+                        result.Add(CreateViewModel(soft));
                         break;
                     }
                     continue;
                 }
-                result.Add(CreateViewModel(Soft));
+                result.Add(CreateViewModel(soft));
             }
             return result;
         }
         private PackViewModel CreateViewModel(Pack Pack)
         {
-            Dictionary<int, (string, int)> PackSofts = new Dictionary<int,
-            (string, int)>();
-            foreach (var pc in source.PackSofts)
+            Dictionary<int, (string, int)> PackSofts = new Dictionary<int, (string, int)>();
+            foreach (var sf in source.PackSofts)
             {
-                if (pc.PackId == Pack.Id)
+                if (sf.PackId == Pack.Id)
                 {
                     string SoftName = string.Empty;
                     foreach (var Soft in source.Softs)
                     {
-                        if (pc.SoftId == Soft.Id)
+                        if (sf.SoftId == Soft.Id)
                         {
                             SoftName = Soft.SoftName;
                             break;
                         }
                     }
-                    PackSofts.Add(pc.SoftId, (SoftName, pc.Count));
+                    PackSofts.Add(sf.SoftId, (SoftName, sf.Count));
                 }
             }
             return new PackViewModel

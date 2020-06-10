@@ -21,15 +21,15 @@ namespace SoftShopDatabaseImplement.Implements
                     try
                     {
                         Pack element = context.Packs.FirstOrDefault(rec =>
-                        rec.PackName == model.PackName && rec.Id != model.Id);
+                       rec.PackName == model.PackName && rec.Id != model.Id);
                         if (element != null)
                         {
-                            throw new Exception("Уже есть пакет с таким названием");
+                            throw new Exception("Уже есть изделие с таким названием");
                         }
                         if (model.Id.HasValue)
                         {
                             element = context.Packs.FirstOrDefault(rec => rec.Id ==
-                            model.Id);
+                           model.Id);
                             if (element == null)
                             {
                                 throw new Exception("Элемент не найден");
@@ -45,19 +45,19 @@ namespace SoftShopDatabaseImplement.Implements
                         context.SaveChanges();
                         if (model.Id.HasValue)
                         {
-                            var productComponents = context.PackSofts.Where(rec
-                            => rec.PackId == model.Id.Value).ToList();
+                            var PackSofts = context.PackSofts.Where(rec
+                           => rec.PackId == model.Id.Value).ToList();
                             // удалили те, которых нет в модели
-                            context.PackSofts.RemoveRange(productComponents.Where(rec =>
+                            context.PackSofts.RemoveRange(PackSofts.Where(rec =>
                             !model.PackSofts.ContainsKey(rec.SoftId)).ToList());
                             context.SaveChanges();
                             // обновили количество у существующих записей
-                            foreach (var updateComponent in productComponents)
+                            foreach (var updateSoft in PackSofts)
                             {
-                                updateComponent.Count =
-                                model.PackSofts[updateComponent.SoftId].Item2;
+                                updateSoft.Count =
+                               model.PackSofts[updateSoft.SoftId].Item2;
 
-                                model.PackSofts.Remove(updateComponent.SoftId);
+                                model.PackSofts.Remove(updateSoft.SoftId);
                             }
                             context.SaveChanges();
                         }
@@ -90,6 +90,7 @@ namespace SoftShopDatabaseImplement.Implements
                 {
                     try
                     {
+                        // удаяем записи по ПО при удалении пакета
                         context.PackSofts.RemoveRange(context.PackSofts.Where(rec =>
                         rec.PackId == model.Id));
                         Pack element = context.Packs.FirstOrDefault(rec => rec.Id
@@ -120,18 +121,18 @@ namespace SoftShopDatabaseImplement.Implements
                 return context.Packs
                 .Where(rec => model == null || rec.Id == model.Id)
                 .ToList()
-                .Select(rec => new PackViewModel
-                {
-                    Id = rec.Id,
-                    PackName = rec.PackName,
-                    Price = rec.Price,
-                    PackSofts = context.PackSofts
+               .Select(rec => new PackViewModel
+               {
+                   Id = rec.Id,
+                   PackName = rec.PackName,
+                   Price = rec.Price,
+                   PackSofts = context.PackSofts
                 .Include(recPC => recPC.Soft)
-                .Where(recPC => recPC.PackId == rec.Id)
-                .ToDictionary(recPC => recPC.SoftId, recPC =>
+               .Where(recPC => recPC.PackId == rec.Id)
+               .ToDictionary(recPC => recPC.SoftId, recPC =>
                 (recPC.Soft?.SoftName, recPC.Count))
-                })
-                .ToList();
+               })
+               .ToList();
             }
         }
     }

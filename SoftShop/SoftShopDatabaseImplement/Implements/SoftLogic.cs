@@ -16,15 +16,15 @@ namespace SoftShopDatabaseImplement.Implements
             using (var context = new SoftShopDatabase())
             {
                 Soft element = context.Softs.FirstOrDefault(rec =>
-                rec.SoftName == model.SoftName && rec.Id != model.Id);
+               rec.SoftName == model.SoftName && rec.Id != model.Id);
                 if (element != null)
                 {
-                    throw new Exception("Уже есть по с таким названием");
+                    throw new Exception("Уже есть ПО с таким названием");
                 }
                 if (model.Id.HasValue)
                 {
                     element = context.Softs.FirstOrDefault(rec => rec.Id ==
-                    model.Id);
+                   model.Id);
                     if (element == null)
                     {
                         throw new Exception("Элемент не найден");
@@ -44,7 +44,7 @@ namespace SoftShopDatabaseImplement.Implements
             using (var context = new SoftShopDatabase())
             {
                 Soft element = context.Softs.FirstOrDefault(rec => rec.Id ==
-                model.Id);
+               model.Id);
                 if (element != null)
                 {
                     context.Softs.Remove(element);

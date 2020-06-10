@@ -11,7 +11,6 @@ namespace SoftShopListImplement.Implements
 {
     public class OrderLogic : IOrderLogic
     {
-
         private readonly DataListSingleton source;
         public OrderLogic()
         {
@@ -66,7 +65,7 @@ namespace SoftShopListImplement.Implements
             {
                 if (model != null)
                 {
-                    if (Order.Id == model.Id)
+                    if (Order.Id == model.Id || (model.DateFrom.HasValue && model.DateTo.HasValue && Order.DateCreate >= model.DateFrom && Order.DateCreate <= model.DateTo))
                     {
                         result.Add(CreateViewModel(Order));
                         break;
@@ -89,19 +88,19 @@ namespace SoftShopListImplement.Implements
         }
         private OrderViewModel CreateViewModel(Order Order)
         {
-            string PackName = "";
+            string packName = "";
             for (int j = 0; j < source.Packs.Count; ++j)
             {
                 if (source.Packs[j].Id == Order.PackId)
                 {
-                    PackName = source.Packs[j].PackName;
+                    packName = source.Packs[j].PackName;
                     break;
                 }
             }
             return new OrderViewModel
             {
                 Id = Order.Id,
-                PackName = PackName,
+                PackName = packName,
                 Count = Order.Count,
                 Sum = Order.Sum,
                 Status = Order.Status,
