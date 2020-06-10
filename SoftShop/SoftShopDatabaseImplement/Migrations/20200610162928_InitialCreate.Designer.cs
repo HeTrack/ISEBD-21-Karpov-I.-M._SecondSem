@@ -10,7 +10,7 @@ using SoftShopDatabaseImplement;
 namespace SoftShopDatabaseImplement.Migrations
 {
     [DbContext(typeof(SoftShopDatabase))]
-    [Migration("20200610161457_InitialCreate")]
+    [Migration("20200610162928_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
