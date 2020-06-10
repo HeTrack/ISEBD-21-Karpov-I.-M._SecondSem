@@ -1,7 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Packs>
   <Pack Id="1">
-    <PackName>office</PackName>
-    <Price>12</Price>
+    <PackName>pack</PackName>
+    <Price>120</Price>
+  </Pack>
+  <Pack Id="5">
+    <PackName>редакторы</PackName>
+    <Price>1000</Price>
   </Pack>
 </Packs>

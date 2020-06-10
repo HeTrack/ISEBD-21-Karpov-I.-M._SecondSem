@@ -3,6 +3,21 @@
   <PackSoft Id="1">
     <PackId>1</PackId>
     <SoftId>1</SoftId>
-    <Count>2</Count>
+    <Count>1</Count>
+  </PackSoft>
+  <PackSoft Id="2">
+    <PackId>1</PackId>
+    <SoftId>2</SoftId>
+    <Count>1</Count>
+  </PackSoft>
+  <PackSoft Id="3">
+    <PackId>5</PackId>
+    <SoftId>3</SoftId>
+    <Count>1</Count>
+  </PackSoft>
+  <PackSoft Id="4">
+    <PackId>5</PackId>
+    <SoftId>4</SoftId>
+    <Count>1</Count>
   </PackSoft>
 </PackSofts>
