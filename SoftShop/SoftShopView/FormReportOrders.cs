@@ -24,47 +24,6 @@ namespace SoftShopView
             InitializeComponent();
             this.logic = logic;
 }
-
-        private void buttonMake_Click(object sender, EventArgs e)
-        {
-            if (dateTimePickerFrom.Value.Date >= dateTimePickerTo.Value.Date)
-            {
-                MessageBox.Show("Дата начала должна быть меньше даты окончания",
-                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            try
-            {
-                var dict = logic.GetOrders(new ReportBindingModel
-                {
-                    DateFrom = dateTimePickerFrom.Value.Date,
-                    DateTo = dateTimePickerTo.Value.Date
-                });
-                if (dict != null)
-                {
-                    dataGridView.Rows.Clear();
-                    foreach (var date in dict)
-                    {
-                        decimal generalSum = 0;
-                        dataGridView.Rows.Add(new object[] { date.Key.ToShortDateString() });
-
-                        foreach (var order in date)
-                        {
-                            dataGridView.Rows.Add(new object[] { "", order.PackName, order.Sum });
-                            generalSum += order.Sum;
-                        }
-                        dataGridView.Rows.Add(new object[] { "Итого: ", "", generalSum });
-                        dataGridView.Rows.Add(new object[] { });
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-                MessageBoxIcon.Error);
-            }
-        }
-
         private void buttonSaveToExcel_Click(object sender, EventArgs e)
         {
             using (var dialog = new SaveFileDialog { Filter = "xlsx|*.xlsx" })
