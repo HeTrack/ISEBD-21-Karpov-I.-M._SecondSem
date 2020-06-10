@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Packs>
   <Pack Id="1">
-    <PackName>pack2011</PackName>
-    <Price>120</Price>
+    <PackName>office</PackName>
+    <Price>12</Price>
   </Pack>
 </Packs>
 
