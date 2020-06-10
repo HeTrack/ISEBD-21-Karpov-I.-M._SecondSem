@@ -44,14 +44,12 @@ namespace SoftShopView
         }
         private void CalcSum()
         {
-            if (comboBoxPack.SelectedValue != null &&
-           !string.IsNullOrEmpty(textBoxCount.Text))
+            if (comboBoxPack.SelectedValue != null && !string.IsNullOrEmpty(textBoxCount.Text))
             {
                 try
                 {
                     int id = Convert.ToInt32(comboBoxPack.SelectedValue);
-                    PackViewModel Pack = logicB.Read(new PackBindingModel
-                    { Id = id })?[0];
+                    PackViewModel Pack = logicB.Read(new PackBindingModel { Id = id })?[0];
                     int count = Convert.ToInt32(textBoxCount.Text);
                     textBoxSum.Text = (count * Pack.Price).ToString();
                 }
