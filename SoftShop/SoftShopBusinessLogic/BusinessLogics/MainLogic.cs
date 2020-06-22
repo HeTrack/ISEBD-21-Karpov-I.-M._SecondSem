@@ -10,29 +10,26 @@ namespace SoftShopBusinessLogic.BusinessLogics
     public class MainLogic
     {
         private readonly IOrderLogic orderLogic;
-        public MainLogic(IOrderLogic orderLogic)
+        private readonly IWarehouseLogic warehouseLogic;
+        public MainLogic(IOrderLogic orderLogic, IWarehouseLogic warehouseLogic)
         {
             this.orderLogic = orderLogic;
+            this.warehouseLogic = warehouseLogic;
         }
         public void CreateOrder(CreateOrderBindingModel model)
         {
             orderLogic.CreateOrUpdate(new OrderBindingModel
             {
                 PackId = model.PackId,
-                ClientId = model.ClientId,
                 Count = model.Count,
                 Sum = model.Sum,
                 DateCreate = DateTime.Now,
                 Status = OrderStatus.Принят
             });
         }
-
         public void TakeOrderInWork(ChangeStatusBindingModel model)
         {
-            var order = orderLogic.Read(new OrderBindingModel
-            {
-                Id = model.OrderId
-            })?[0];
+            var order = orderLogic.Read(new OrderBindingModel { Id = model.OrderId })?[0];
             if (order == null)
             {
                 throw new Exception("Не найден заказ");
@@ -41,25 +38,28 @@ namespace SoftShopBusinessLogic.BusinessLogics
             {
                 throw new Exception("Заказ не в статусе \"Принят\"");
             }
-            orderLogic.CreateOrUpdate(new OrderBindingModel
+            try
             {
-                Id = order.Id,
-                ClientId = order.ClientId,
-                PackId = order.PackId,
-                Count = order.Count,
-                Sum = order.Sum,
-                DateCreate = order.DateCreate,
-                DateImplement = DateTime.Now,
-                Status = OrderStatus.Выполняется
-            });
+                warehouseLogic.RemoveFromWarehouse(order.PackId, order.Count);
+                orderLogic.CreateOrUpdate(new OrderBindingModel
+                {
+                    Id = order.Id,
+                    PackId = order.PackId,
+                    Count = order.Count,
+                    Sum = order.Sum,
+                    DateCreate = order.DateCreate,
+                    DateImplement = DateTime.Now,
+                    Status = OrderStatus.Выполняется
+                });
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
-
         public void FinishOrder(ChangeStatusBindingModel model)
         {
-            var order = orderLogic.Read(new OrderBindingModel
-            {
-                Id = model.OrderId
-            })?[0];
+            var order = orderLogic.Read(new OrderBindingModel { Id = model.OrderId })?[0];
             if (order == null)
             {
                 throw new Exception("Не найден заказ");
@@ -71,7 +71,6 @@ namespace SoftShopBusinessLogic.BusinessLogics
             orderLogic.CreateOrUpdate(new OrderBindingModel
             {
                 Id = order.Id,
-                ClientId = order.ClientId,
                 PackId = order.PackId,
                 Count = order.Count,
                 Sum = order.Sum,
@@ -82,10 +81,7 @@ namespace SoftShopBusinessLogic.BusinessLogics
         }
         public void PayOrder(ChangeStatusBindingModel model)
         {
-            var order = orderLogic.Read(new OrderBindingModel
-            {
-                Id = model.OrderId
-            })?[0];
+            var order = orderLogic.Read(new OrderBindingModel { Id = model.OrderId })?[0];
             if (order == null)
             {
                 throw new Exception("Не найден заказ");
@@ -97,7 +93,6 @@ namespace SoftShopBusinessLogic.BusinessLogics
             orderLogic.CreateOrUpdate(new OrderBindingModel
             {
                 Id = order.Id,
-                ClientId = order.ClientId,
                 PackId = order.PackId,
                 Count = order.Count,
                 Sum = order.Sum,
@@ -105,6 +100,10 @@ namespace SoftShopBusinessLogic.BusinessLogics
                 DateImplement = order.DateImplement,
                 Status = OrderStatus.Оплачен
             });
+        }
+        public void FillWarehouse(WarehouseSoftBindingModel model)
+        {
+            warehouseLogic.FillWarehouse(model);
         }
     }
 }

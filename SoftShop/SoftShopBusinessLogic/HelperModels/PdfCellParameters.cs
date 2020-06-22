@@ -1,8 +1,8 @@
-﻿using MigraDoc.DocumentObjectModel;
-using MigraDoc.DocumentObjectModel.Tables;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using MigraDoc.DocumentObjectModel;
+using MigraDoc.DocumentObjectModel.Tables;
 
 namespace SoftShopBusinessLogic.HelperModels
 {
@@ -13,6 +13,5 @@ namespace SoftShopBusinessLogic.HelperModels
         public string Style { get; set; }
         public ParagraphAlignment ParagraphAlignment { get; set; }
         public Unit BorderWidth { get; set; }
-
     }
 }
