@@ -10,14 +10,14 @@ using SoftShopDatabaseImplement;
 namespace SoftShopDatabaseImplement.Migrations
 {
     [DbContext(typeof(SoftShopDatabase))]
-    [Migration("20200604195932_InitialCreate")]
+    [Migration("20200623115454_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.2")
+                .HasAnnotation("ProductVersion", "3.1.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
