@@ -132,7 +132,7 @@ namespace SoftShopBusinessLogic.BusinessLogics
             SaveToExcel.CreateDoc(new ExcelInfo
             {
                 FileName = model.FileName,
-                Title = "Список пакетов в складах",
+                Title = "Список ПО в складах",
                 Warehouses = warehouseLogic.GetList()
             });
         }
@@ -141,7 +141,7 @@ namespace SoftShopBusinessLogic.BusinessLogics
             SaveToPdf.CreateDoc(new PdfInfo
             {
                 FileName = model.FileName,
-                Title = "Список пакетов",
+                Title = "Список ПО",
                 WarehouseSofts = GetWarehouseSofts()
             });
         }

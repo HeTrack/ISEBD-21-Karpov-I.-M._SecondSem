@@ -62,7 +62,7 @@
             this.reportViewer.Size = new System.Drawing.Size(656, 305);
             this.reportViewer.TabIndex = 6;
             // 
-            // FormReportFoods
+            // FormReportSofts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;

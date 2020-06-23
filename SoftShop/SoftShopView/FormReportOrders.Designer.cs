@@ -98,7 +98,7 @@
             // 
             // Column1
             // 
-            this.Column1.HeaderText = "Закуска";
+            this.Column1.HeaderText = "Пакет";
             this.Column1.Name = "Column1";
             // 
             // Column3

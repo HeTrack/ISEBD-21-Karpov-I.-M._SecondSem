@@ -32,7 +32,7 @@ namespace SoftShopBusinessLogic.BusinessLogics
                 CreateRow(new PdfRowParameters
                 {
                     Table = table,
-                    Texts = new List<string> { "Закуска", "Продукт", "Количество" },
+                    Texts = new List<string> { "Пакет", "ПО", "Количество" },
                     Style = "NormalTitle",
                     ParagraphAlignment = ParagraphAlignment.Center
                 });
@@ -58,7 +58,7 @@ namespace SoftShopBusinessLogic.BusinessLogics
                 CreateRow(new PdfRowParameters
                 {
                     Table = table,
-                    Texts = new List<string> { "Продукт", "Склад", "Количество" },
+                    Texts = new List<string> { "ПО", "Склад", "Количество" },
                     Style = "NormalTitle",
                     ParagraphAlignment = ParagraphAlignment.Center
                 });
