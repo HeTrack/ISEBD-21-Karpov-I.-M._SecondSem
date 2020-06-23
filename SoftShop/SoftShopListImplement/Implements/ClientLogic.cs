@@ -19,8 +19,12 @@ namespace SoftShopListImplement.Implements
         {
             Client tempClient = model.Id.HasValue ? null : new Client { Id = 1 };
 
-            foreach (var client in source.Clients)
+            foreach (var client in source.Clients)           
             {
+                if (client.Email == model.Email && client.Id != model.Id)
+                {
+                    throw new Exception("Уже есть клиент с таким логином");
+                }
                 if (!model.Id.HasValue && client.Id >= tempClient.Id)
                 {
                     tempClient.Id = tempClient.Id + 1;
