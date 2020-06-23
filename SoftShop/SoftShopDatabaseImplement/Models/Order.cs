@@ -21,6 +21,6 @@ namespace SoftShopDatabaseImplement.Models
         public DateTime DateCreate { get; set; }
         public DateTime? DateImplement { get; set; }
         public virtual Pack Pack { get; set; }
-        public Client Client { get; set; }
+        public virtual Client Client { get; set; }
     }
 }

@@ -32,6 +32,8 @@ namespace SoftShopRestApi
             services.AddTransient<IClientLogic, ClientLogic>();
             services.AddTransient<IOrderLogic, OrderLogic>();
             services.AddTransient<IPackLogic, PackLogic>();
+            services.AddTransient<IWarehouseLogic, WarehouseLogic>();
+            services.AddTransient<ISoftLogic, SoftLogic>();
             services.AddTransient<MainLogic>();
             services.AddControllers();
         }

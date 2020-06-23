@@ -5,10 +5,11 @@ using System.Text;
 
 namespace SoftShopBusinessLogic.HelperModels
 {
-    class PDFInfo
+    class PdfInfo
     {
         public string FileName { get; set; }
         public string Title { get; set; }
         public List<ReportPackSoftViewModel> PackSofts { get; set; }
+        public List<ReportWarehouseSoftViewModel> WarehouseSofts { get; set; }
     }
 }
