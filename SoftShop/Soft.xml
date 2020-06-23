@@ -1,9 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Softs>
   <Soft Id="1">
-    <SoftName>excel</SoftName>
-  </Soft>
-  <Soft Id="2">
     <SoftName>acess</SoftName>
   </Soft>
   <Soft Id="3">

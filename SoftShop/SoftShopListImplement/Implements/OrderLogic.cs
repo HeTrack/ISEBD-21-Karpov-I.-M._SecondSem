@@ -58,6 +58,7 @@ namespace SoftShopListImplement.Implements
             }
             throw new Exception("Элемент не найден");
         }
+
         public List<OrderViewModel> Read(OrderBindingModel model)
         {
             List<OrderViewModel> result = new List<OrderViewModel>();
@@ -76,6 +77,7 @@ namespace SoftShopListImplement.Implements
             }
             return result;
         }
+
         private Order CreateModel(OrderBindingModel model, Order Order)
         {
             Order.PackId = model.PackId == 0 ? Order.PackId : model.PackId;
@@ -86,6 +88,7 @@ namespace SoftShopListImplement.Implements
             Order.DateImplement = model.DateImplement;
             return Order;
         }
+
         private OrderViewModel CreateViewModel(Order Order)
         {
             string packName = "";

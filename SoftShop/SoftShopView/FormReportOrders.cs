@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Microsoft.Reporting.WinForms;
+using SoftShopBusinessLogic.BindingModels;
+using SoftShopBusinessLogic.BusinessLogics;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,8 +11,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Unity;
-using SoftShopBusinessLogic.BindingModels;
-using SoftShopBusinessLogic.BusinessLogics;
 
 namespace SoftShopView
 {
@@ -38,7 +39,7 @@ namespace SoftShopView
                     {
                         logic.SaveOrdersToExcelFile(new ReportBindingModel
                         {
-                            FileName = dialog.FileName,
+                            FileName = dialog.FileName,                          
                             DateFrom = dateTimePickerFrom.Value.Date,
                             DateTo = dateTimePickerTo.Value.Date,
                         });
@@ -63,21 +64,22 @@ namespace SoftShopView
             try
             {
                 var dict = logic.GetOrders(new ReportBindingModel { DateFrom = dateTimePickerFrom.Value.Date, DateTo = dateTimePickerTo.Value.Date });
+               
                 if (dict != null)
                 {
-                    dataGridView.Rows.Clear();
-                    foreach (var date in dict)
-                    {
-                        decimal sum = 0;
-                        dataGridView.Rows.Add(new object[] { date.Key.ToShortDateString(), "", "" });
-                        foreach (var order in date)
-                        {
-                            dataGridView.Rows.Add(new object[] { "", order.PackName, order.Sum });
-                            sum += order.Sum;
+                    dataGridView.Rows.Clear();                 
+                        foreach (var date in dict)
+                        {                          
+                            decimal sum = 0;
+                            dataGridView.Rows.Add(new object[] { date.Key.ToShortDateString(), "", "" });
+                            foreach (var order in date)
+                            {
+                                dataGridView.Rows.Add(new object[] { "", order.PackName, order.Sum });                              
+                                sum += order.Sum;
+                            }    
+                            dataGridView.Rows.Add(new object[] { "Итого", "", sum });
+                            dataGridView.Rows.Add(new object[] { });
                         }
-                        dataGridView.Rows.Add(new object[] { "Итого", "", sum });
-                        dataGridView.Rows.Add(new object[] { });
-                    }
                 }
             }
             catch (Exception ex)

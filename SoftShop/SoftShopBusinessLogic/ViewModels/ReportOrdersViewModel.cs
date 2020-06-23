@@ -14,3 +14,4 @@ namespace SoftShopBusinessLogic.ViewModels
         public OrderStatus Status { get; set; }
     }
 }
+
