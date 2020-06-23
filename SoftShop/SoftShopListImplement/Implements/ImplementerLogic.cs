@@ -4,6 +4,7 @@ using SoftShopBusinessLogic.ViewModels;
 using SoftShopListImplement.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace SoftShopListImplement.Implements
@@ -38,7 +39,15 @@ namespace SoftShopListImplement.Implements
             }
             else
             {
-                source.Implementers.Add(CreateModel(model, tempImplementer));
+                Implementer element = source.Implementers.FirstOrDefault(rec => rec.ImplementerFIO == model.ImplementerFIO && rec.Id != model.Id);
+                if (element != null)
+                {
+                    throw new Exception("Уже есть исполнитель с таким ФИО");
+                }
+                else
+                {
+                    source.Implementers.Add(CreateModel(model, tempImplementer));
+                }
             }
         }
         public void Delete(ImplementerBindingModel model)
