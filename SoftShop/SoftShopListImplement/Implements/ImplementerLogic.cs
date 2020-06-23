@@ -24,7 +24,7 @@ namespace SoftShopListImplement.Implements
             {
                 if (implementer.ImplementerFIO == model.ImplementerFIO && implementer.Id != model.Id)
                 {
-                    throw new Exception("Уже есть исполниткль с таким ФИО");
+                    throw new Exception("Уже есть исполнитель с таким ФИО");
                 }
 
                 if (!model.Id.HasValue && implementer.Id >= tempImplementer.Id)
