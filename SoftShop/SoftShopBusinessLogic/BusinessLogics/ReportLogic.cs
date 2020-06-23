@@ -17,14 +17,13 @@ namespace SoftShopBusinessLogic.BusinessLogics
         public ReportLogic(IPackLogic packLogic, ISoftLogic softLogic,
             IOrderLogic orderLogic)
         {
-            this.packLogic = packLogic;
             this.softLogic = softLogic;
+            this.packLogic = packLogic;
             this.orderLogic = orderLogic;
         }
 
         public List<ReportPackSoftViewModel> GetPackSoft()
         {
-            
             var packs = packLogic.Read(null);
             var list = new List<ReportPackSoftViewModel>();
             foreach (var pack in packs)
@@ -50,6 +49,7 @@ namespace SoftShopBusinessLogic.BusinessLogics
             {
                 DateFrom = model.DateFrom,
                 DateTo = model.DateTo
+
             })
             .GroupBy(rec => rec.DateCreate.Date)
             .OrderBy(recG => recG.Key)
@@ -58,6 +58,10 @@ namespace SoftShopBusinessLogic.BusinessLogics
             return list;
     }
 
+        /// <summary>
+        /// Сохранение компонент в файл-Word
+        /// </summary>
+        /// <param name="model"></param>
         public void SavePacksToWordFile(ReportBindingModel model)
         {
             SaveToWord.CreateDoc(new WordInfo
@@ -68,17 +72,25 @@ namespace SoftShopBusinessLogic.BusinessLogics
             });
         }
 
+        /// <summary>
+        /// Сохранение закусок с указаеним продуктов в файл-Excel
+        /// </summary>
+        /// <param name="model"></param>
         public void SaveOrdersToExcelFile(ReportBindingModel model)
         {
             SaveToExcel.CreateDoc(new ExcelInfo
             {
+
                 FileName = model.FileName,
                 Title = "Список заказов",
                 Orders = GetOrders(model)
             });
         }
 
-     
+        /// <summary>
+        /// Сохранение закусок с продуктами в файл-Pdf
+        /// </summary>
+        /// <param name="model"></param>
         public void SavePackSoftsToPdfFile(ReportBindingModel model)
         {
             SaveToPdf.CreateDoc(new PDFInfo
