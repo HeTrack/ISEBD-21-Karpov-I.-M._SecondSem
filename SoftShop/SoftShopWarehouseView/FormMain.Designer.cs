@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.менюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.создатьСкладToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.изменитьСкладToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -37,7 +37,7 @@
             this.удалитьСкладToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.обновитьСписокToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
-            this.menuStrip1.SuspendLayout();
+            this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView
@@ -50,17 +50,17 @@
             this.dataGridView.Size = new System.Drawing.Size(1035, 634);
             this.dataGridView.TabIndex = 1;
             // 
-            // menuStrip1
+            // menuStrip
             // 
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.менюToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 3, 0, 3);
-            this.menuStrip1.Size = new System.Drawing.Size(1067, 30);
-            this.menuStrip1.TabIndex = 2;
-            this.menuStrip1.Text = "menuStrip";
+            this.menuStrip.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip.Name = "menuStrip";
+            this.menuStrip.Padding = new System.Windows.Forms.Padding(8, 3, 0, 3);
+            this.menuStrip.Size = new System.Drawing.Size(1067, 30);
+            this.menuStrip.TabIndex = 2;
+            this.menuStrip.Text = "menuStrip";
             // 
             // менюToolStripMenuItem
             // 
@@ -115,14 +115,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 692);
             this.Controls.Add(this.dataGridView);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
+            this.Controls.Add(this.menuStrip);
+            this.MainMenuStrip = this.menuStrip;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FormMain";
             this.Text = "Склады софтов";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.menuStrip.ResumeLayout(false);
+            this.menuStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -130,7 +130,7 @@
 
         #endregion
         private System.Windows.Forms.DataGridView dataGridView;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.ToolStripMenuItem менюToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem создатьСкладToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem изменитьСкладToolStripMenuItem;

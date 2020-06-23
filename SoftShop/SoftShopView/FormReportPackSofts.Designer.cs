@@ -60,7 +60,7 @@
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Size = new System.Drawing.Size(964, 24);
             this.menuStrip.TabIndex = 1;
-            this.menuStrip.Text = "menuStrip1";
+            this.menuStrip.Text = "menuStrip";
             // 
             // buttonMake
             // 
