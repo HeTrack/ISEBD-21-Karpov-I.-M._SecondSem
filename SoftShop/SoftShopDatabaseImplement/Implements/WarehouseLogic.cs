@@ -104,14 +104,15 @@ namespace SoftShopDatabaseImplement.Implements
                 }
             }
         }
-        public void DelElement(int id)
+        public void DelElement(WarehouseBindingModel model)
         {
             using (var context = new SoftShopDatabase())
             {
-                var elem = context.Warehouses.FirstOrDefault(x => x.Id == id);
-                if (elem != null)
+                context.WarehouseSofts.RemoveRange(context.WarehouseSofts.Where(rec => rec.WarehouseId == model.Id));
+                Warehouse element = context.Warehouses.FirstOrDefault(rec => rec.Id == model.Id);
+                if (element != null)
                 {
-                    context.Warehouses.Remove(elem);
+                    context.Warehouses.Remove(element);
                     context.SaveChanges();
                 }
                 else

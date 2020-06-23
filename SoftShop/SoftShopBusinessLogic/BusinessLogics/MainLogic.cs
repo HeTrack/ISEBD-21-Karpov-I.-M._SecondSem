@@ -21,6 +21,7 @@ namespace SoftShopBusinessLogic.BusinessLogics
             orderLogic.CreateOrUpdate(new OrderBindingModel
             {
                 PackId = model.PackId,
+                ClientId = model.ClientId,
                 Count = model.Count,
                 Sum = model.Sum,
                 DateCreate = DateTime.Now,
@@ -45,6 +46,7 @@ namespace SoftShopBusinessLogic.BusinessLogics
                 {
                     Id = order.Id,
                     PackId = order.PackId,
+                    ClientId = order.ClientId,
                     Count = order.Count,
                     Sum = order.Sum,
                     DateCreate = order.DateCreate,
@@ -72,6 +74,7 @@ namespace SoftShopBusinessLogic.BusinessLogics
             {
                 Id = order.Id,
                 PackId = order.PackId,
+                ClientId = order.ClientId,
                 Count = order.Count,
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,
@@ -94,6 +97,7 @@ namespace SoftShopBusinessLogic.BusinessLogics
             {
                 Id = order.Id,
                 PackId = order.PackId,
+                ClientId = order.ClientId,
                 Count = order.Count,
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,

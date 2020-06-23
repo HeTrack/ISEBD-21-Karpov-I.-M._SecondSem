@@ -12,7 +12,7 @@ namespace SoftShopBusinessLogic.Interfaces
         WarehouseViewModel GetElement(int id);
         void AddElement(WarehouseBindingModel model);
         void UpdElement(WarehouseBindingModel model);
-        void DelElement(int id);
+        void DelElement(WarehouseBindingModel model);
         void FillWarehouse(WarehouseSoftBindingModel model);  
         void RemoveFromWarehouse(int packId, int packsCount);
     }

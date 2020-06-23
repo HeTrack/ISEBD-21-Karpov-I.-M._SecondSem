@@ -88,7 +88,7 @@ namespace SoftShopBusinessLogic.BusinessLogics
             SaveToWord.CreateDoc(new WordInfo
             {
                 FileName = model.FileName,
-                Title = "Список Пакетов",
+                Title = "Список пакетов",
                 Packs = PackLogic.Read(null)
             });
         }
@@ -106,7 +106,7 @@ namespace SoftShopBusinessLogic.BusinessLogics
             });
         }
         /// <summary>
-        /// Сохранение ПО в пакетах в файл-Pdf
+        /// Сохранение пакетов с по в файл-Pdf
         /// </summary>
         /// <param name="model"></param>
         public void SavePacksToPdfFile(ReportBindingModel model)
@@ -114,7 +114,7 @@ namespace SoftShopBusinessLogic.BusinessLogics
             SaveToPdf.CreateDoc(new PdfInfo
             {
                 FileName = model.FileName,
-                Title = "Список ПО в пакетах",
+                Title = "Список пакетов с ПО",
                 PackSofts = GetPackSoft(),
             });
         }
@@ -132,7 +132,7 @@ namespace SoftShopBusinessLogic.BusinessLogics
             SaveToExcel.CreateDoc(new ExcelInfo
             {
                 FileName = model.FileName,
-                Title = "Список пакетов в складах",
+                Title = "Список ПО в складах",
                 Warehouses = warehouseLogic.GetList()
             });
         }
@@ -141,7 +141,7 @@ namespace SoftShopBusinessLogic.BusinessLogics
             SaveToPdf.CreateDoc(new PdfInfo
             {
                 FileName = model.FileName,
-                Title = "Список пакетов",
+                Title = "Список ПО",
                 WarehouseSofts = GetWarehouseSofts()
             });
         }

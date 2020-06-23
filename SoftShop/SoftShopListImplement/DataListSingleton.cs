@@ -11,6 +11,8 @@ namespace SoftShopListImplement
         public List<Order> Orders { get; set; }
         public List<Pack> Packs { get; set; }
         public List<PackSoft> PackSofts { get; set; }
+        public List<Warehouse> Warehouses { get; set; }
+        public List<WarehouseSoft> WarehouseSofts { get; set; }
         public List<Client> Clients { get; set; }
         private DataListSingleton()
         {
@@ -18,6 +20,8 @@ namespace SoftShopListImplement
             Orders = new List<Order>();
             Packs = new List<Pack>();
             PackSofts = new List<PackSoft>();
+            Warehouses = new List<Warehouse>();
+            WarehouseSofts = new List<WarehouseSoft>();
             Clients = new List<Client>();
 
         }

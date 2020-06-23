@@ -50,7 +50,7 @@ namespace SoftShopView
                 {
                     try
                     {
-                        logic.SavePackSoftsToPdfFile(new ReportBindingModel
+                        logic.SavePacksToPdfFile(new ReportBindingModel
                         {
                             FileName = dialog.FileName,
                         });

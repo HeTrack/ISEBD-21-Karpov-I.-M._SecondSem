@@ -42,7 +42,8 @@ namespace SoftShopView
                     dataGridView.DataSource = list;
                     dataGridView.Columns[0].Visible = false;
                     dataGridView.Columns[1].Visible = false;
-                    dataGridView.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    dataGridView.Columns[3].Visible = false;
+                    dataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
             }
             catch (Exception ex)
@@ -51,12 +52,12 @@ namespace SoftShopView
                MessageBoxIcon.Error);
             }
         }
-        private void пакетыToolStripMenuItem_Click(object sender, EventArgs e)
+        private void поToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormSofts>();
             form.ShowDialog();
         }
-        private void поToolStripMenuItem_Click(object sender, EventArgs e)
+        private void пакетыToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormPacks>();
             form.ShowDialog();

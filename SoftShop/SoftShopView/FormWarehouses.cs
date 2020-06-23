@@ -1,4 +1,5 @@
-﻿using SoftShopBusinessLogic.Interfaces;
+﻿using SoftShopBusinessLogic.BindingModels;
+using SoftShopBusinessLogic.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -74,7 +75,7 @@ namespace SoftShopView
                     int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                     try
                     {
-                        logic.DelElement(id);
+                        logic.DelElement(new WarehouseBindingModel { Id = id });
                     }
                     catch (Exception ex)
                     {

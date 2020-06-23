@@ -91,12 +91,13 @@ namespace SoftShopFileImplement.Implements
                 throw new Exception("Элемент не найден");
             }
         }
-        public void DelElement(int id)
+        public void DelElement(WarehouseBindingModel model)
         {
-            var elem = source.Warehouses.FirstOrDefault(x => x.Id == id);
-            if (elem != null)
+            source.WarehouseSofts.RemoveAll(rec => rec.WarehouseId == model.Id);
+            Warehouse element = source.Warehouses.FirstOrDefault(rec => rec.Id == model.Id);
+            if (element != null)
             {
-                source.Warehouses.Remove(elem);
+                source.Warehouses.Remove(element);
             }
             else
             {
