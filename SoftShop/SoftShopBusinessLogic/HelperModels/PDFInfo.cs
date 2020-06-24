@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SoftShopBusinessLogic.BusinessLogics
+namespace SoftShopBusinessLogic.HelperModels
 {
    public class PDFInfo
     {
