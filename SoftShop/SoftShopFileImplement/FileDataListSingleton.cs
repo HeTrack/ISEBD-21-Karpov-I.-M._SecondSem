@@ -5,7 +5,6 @@ using System.Xml.Linq;
 using SoftShopBusinessLogic.Enums;
 using System.Linq;
 using SoftShopFileImplement.Models;
-using System.Xml.Serialization;
 
 namespace SoftShopFileImplement
 {
@@ -15,13 +14,15 @@ namespace SoftShopFileImplement
         private readonly string SoftFileName = "C:\\Users\\iliya\\Source\\Semestr 2 TP\\SoftShop\\Soft.xml";
         private readonly string OrderFileName = "C:\\Users\\iliya\\Source\\Semestr 2 TP\\SoftShop\\Order.xml";
         private readonly string PackFileName = "C:\\Users\\iliya\\Source\\Semestr 2 TP\\SoftShop\\Pack.xml";
-        private readonly string PackSoftFileName = "C:\\Users\\iliya\\Source\\Semestr 2 TP\\SoftShop\\PackSoft.xml";
+        private readonly string PackSoftFileName = "C:\\Users\\iliya\\Source\\Semestr 2 TP\\SoftShop\\PackSoft.xml";     
         private readonly string ClientFileName = "C:\\Users\\iliya\\Source\\Semestr 2 TP\\SoftShop\\Client.xml";
+        private readonly string ImplementerFileName = "C:\\Users\\iliya\\Source\\Semestr 2 TP\\SoftShop\\Implementer.xml";
         public List<Soft> Softs { get; set; }
         public List<Order> Orders { get; set; }
         public List<Pack> Packs { get; set; }
         public List<PackSoft> PackSofts { get; set; }
         public List<Client> Clients { get; set; }
+        public List<Implementer> Implementers { get; set; }
         private FileDataListSingleton()
         {
             Softs = LoadSofts();
@@ -29,6 +30,7 @@ namespace SoftShopFileImplement
             Packs = LoadPacks();
             PackSofts = LoadPackSofts();
             Clients = LoadClients();
+            Implementers = LoadImplementers();
         }
         public static FileDataListSingleton GetInstance()
         {
@@ -45,6 +47,28 @@ namespace SoftShopFileImplement
             SavePacks();
             SavePackSofts();
             SaveClients();
+            SaveImplementers();
+        }
+        private List<Implementer> LoadImplementers()
+        {
+            var list = new List<Implementer>();
+            if (File.Exists(ImplementerFileName))
+            {
+                XDocument xDocument = XDocument.Load(ImplementerFileName);
+                var xElements = xDocument.Root.Elements("Implementer").ToList();
+
+                foreach (var elem in xElements)
+                {
+                    list.Add(new Implementer
+                    {
+                        Id = Convert.ToInt32(elem.Attribute("Id").Value),
+                        ImplementerFIO = elem.Element("ImplementerFIO").Value,
+                        WorkingTime = Convert.ToInt32(elem.Element("WorkingTime").Value),
+                        PauseTime = Convert.ToInt32(elem.Element("PauseTime").Value)
+                    });
+                }
+            }
+            return list;
         }
         private List<Client> LoadClients()
         {
@@ -151,6 +175,24 @@ namespace SoftShopFileImplement
             }
             return list;
         }
+            private void SaveImplementers()
+            {
+                if (Implementers != null)
+                {
+                    var xElement = new XElement("Implementers");
+                    foreach (var implementer in Implementers)
+                    {
+                        xElement.Add(new XElement("Implementer",
+                        new XAttribute("Id", implementer.Id),
+                        new XElement("ImplementerFIO", implementer.ImplementerFIO),
+                        new XElement("WorkingTime", implementer.WorkingTime),
+                        new XElement("PauseTime", implementer.PauseTime)));
+                    }
+                    XDocument xDocument = new XDocument(xElement);
+                    xDocument.Save(ImplementerFileName);
+                }
+            }
+
         private void SaveClients()
         {
             if (Clients != null)

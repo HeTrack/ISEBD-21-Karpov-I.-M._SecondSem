@@ -10,6 +10,7 @@ namespace SoftShopDatabaseImplement.Models
     {
         public int Id { get; set; }
         public int ClientId { get; set; }
+        public int? ImplementerId { get; set; }
         public int PackId { get; set; }
         [Required]
         public int Count { get; set; }
@@ -22,5 +23,6 @@ namespace SoftShopDatabaseImplement.Models
         public DateTime? DateImplement { get; set; }
         public virtual Pack Pack { get; set; }
         public Client Client { get; set; }
+        public Implementer Implementer { get; set; }
     }
 }

@@ -73,7 +73,7 @@ namespace SoftShopBusinessLogic.BusinessLogics
         }
 
         /// <summary>
-        /// Сохранение пакетов с указанием ПО в файл-Excel
+        /// Сохранение пакетов с указаеним ПО в файл-Excel
         /// </summary>
         /// <param name="model"></param>
         public void SaveOrdersToExcelFile(ReportBindingModel model)

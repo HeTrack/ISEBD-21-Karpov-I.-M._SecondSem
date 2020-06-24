@@ -25,6 +25,7 @@ namespace SoftShopListImplement.Implements
                 {
                     throw new Exception("Уже есть клиент с таким логином");
                 }
+
                 if (!model.Id.HasValue && client.Id >= tempClient.Id)
                 {
                     tempClient.Id = tempClient.Id + 1;
