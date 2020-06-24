@@ -17,23 +17,30 @@ namespace SoftShopListImplement.Implements
         }
         public void CreateOrUpdate(ImplementerBindingModel model)
         {
-            Implementer tempImplementer = new Implementer { Id = 1 };
-            bool isImplementerExist = false;
+            Implementer tempImplementer = model.Id.HasValue ? null : new Implementer { Id = 1 };
+
             foreach (var implementer in source.Implementers)
             {
-                if (implementer.Id >= tempImplementer.Id)
+                if (implementer.ImplementerFIO == model.ImplementerFIO && implementer.Id != model.Id)
                 {
-                    tempImplementer.Id = implementer.Id + 1;
+                    throw new Exception("Уже есть исполнитель с таким ФИО");
                 }
-                else if (implementer.Id == model.Id)
+
+                if (!model.Id.HasValue && implementer.Id >= tempImplementer.Id)
+                {
+                    tempImplementer.Id = tempImplementer.Id + 1;
+                }
+                else if (model.Id.HasValue && implementer.Id == model.Id)
                 {
                     tempImplementer = implementer;
-                    isImplementerExist = true;
-                    break;
                 }
             }
-            if (isImplementerExist)
+            if (model.Id.HasValue)
             {
+                if (tempImplementer == null)
+                {
+                    throw new Exception("Элемент не найден");
+                }
                 CreateModel(model, tempImplementer);
             }
             else
