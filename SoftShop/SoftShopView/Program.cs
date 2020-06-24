@@ -56,6 +56,9 @@ namespace SoftShopView
             currentContainer.RegisterType<MainLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<ReportLogic>(new
             HierarchicalLifetimeManager());
+            currentContainer.RegisterType<WorkModeling>(new
+HierarchicalLifetimeManager());
+
             return currentContainer;
         }
         private static void MailCheck(object obj)
