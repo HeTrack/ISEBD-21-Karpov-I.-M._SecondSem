@@ -161,7 +161,7 @@ namespace SoftShopDatabaseImplement.Implements
                             if (available < left)
                                 throw new
 
-                                Exception("Недостаточно продуктов на складе");
+                                Exception("Недостаточно ПО на складе");
                             foreach (var rec in warehouseSofts)
                             {
                                 int toRemove = left > rec.Count ? rec.Count : left;
