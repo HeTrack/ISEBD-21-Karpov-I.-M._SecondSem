@@ -5,8 +5,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using SoftShopBusinessLogic.ViewModels;
+using SoftShopFileImplement;
 using SoftShopFileImplement.Models;
-
 
 namespace SoftShopFileImplement.Implements
 {
@@ -31,7 +31,7 @@ namespace SoftShopFileImplement.Implements
             else
             {
                 int maxId = source.Orders.Count > 0 ? source.Orders.Max(rec =>
-               rec.Id) : 0;
+                rec.Id) : 0;
                 element = new Order { Id = maxId + 1 };
                 source.Orders.Add(element);
             }
@@ -45,7 +45,7 @@ namespace SoftShopFileImplement.Implements
         public void Delete(OrderBindingModel model)
         {
             Order element = source.Orders.FirstOrDefault(rec => rec.Id ==
-           model.Id);
+            model.Id);
             if (element != null)
             {
                 source.Orders.Remove(element);
@@ -62,6 +62,7 @@ namespace SoftShopFileImplement.Implements
             .Select(rec => new OrderViewModel
             {
                 Id = rec.Id,
+                PackId = rec.PackId,
                 PackName = source.Packs.FirstOrDefault(x => x.Id == rec.PackId)?.PackName,
                 Count = rec.Count,
                 Sum = rec.Sum,
