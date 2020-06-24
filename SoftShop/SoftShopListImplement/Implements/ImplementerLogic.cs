@@ -4,6 +4,7 @@ using SoftShopBusinessLogic.ViewModels;
 using SoftShopListImplement.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace SoftShopListImplement.Implements
@@ -30,6 +31,7 @@ namespace SoftShopListImplement.Implements
                 {
                     tempImplementer.Id = tempImplementer.Id + 1;
                 }
+
                 else if (model.Id.HasValue && implementer.Id == model.Id)
                 {
                     tempImplementer = implementer;

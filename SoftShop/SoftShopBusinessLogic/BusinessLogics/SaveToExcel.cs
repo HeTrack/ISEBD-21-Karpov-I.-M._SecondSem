@@ -62,8 +62,8 @@ namespace SoftShopBusinessLogic.BusinessLogics
                     CellFromName = "A1",
                     CellToName = "E1"
                 });
-                uint rowIndex = 2;
-                
+              
+                uint rowIndex = 2;            
                 foreach (var date in info.Orders)
                 {
                     decimal generalSum = 0;
@@ -77,7 +77,6 @@ namespace SoftShopBusinessLogic.BusinessLogics
                         StyleIndex = 0U
                     });
                     rowIndex++;
-
                     foreach (var order in date)
                     {
                         InsertCellInWorksheet(new ExcelCellParameters

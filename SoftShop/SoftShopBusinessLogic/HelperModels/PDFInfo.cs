@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SoftShopBusinessLogic.HelperModels
 {
-    class PDFInfo
+   public class PDFInfo
     {
         public string FileName { get; set; }
         public string Title { get; set; }
