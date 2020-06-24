@@ -5,6 +5,7 @@ using SoftShopBusinessLogic.BindingModels;
 using SoftShopBusinessLogic.Interfaces;
 using SoftShopBusinessLogic.ViewModels;
 using System.Linq;
+using SoftShopFileImplement;
 using SoftShopFileImplement.Models;
 
 namespace SoftShopFileImplement.Implements
@@ -19,7 +20,7 @@ namespace SoftShopFileImplement.Implements
         public void CreateOrUpdate(PackBindingModel model)
         {
             Pack element = source.Packs.FirstOrDefault(rec => rec.PackName ==
-           model.PackName && rec.Id != model.Id);
+            model.PackName && rec.Id != model.Id);
             if (element != null)
             {
                 throw new Exception("Уже есть пакет с таким названием");
@@ -35,24 +36,24 @@ namespace SoftShopFileImplement.Implements
             else
             {
                 int maxId = source.Packs.Count > 0 ? source.Softs.Max(rec =>
-               rec.Id) : 0;
+                rec.Id) : 0;
                 element = new Pack { Id = maxId + 1 };
                 source.Packs.Add(element);
             }
             element.PackName = model.PackName;
             element.Price = model.Price;
             source.PackSofts.RemoveAll(rec => rec.PackId == model.Id &&
-           !model.PackSofts.ContainsKey(rec.SoftId));
+            !model.PackSofts.ContainsKey(rec.SoftId));
             var updateSofts = source.PackSofts.Where(rec => rec.PackId ==
-           model.Id && model.PackSofts.ContainsKey(rec.SoftId));
+            model.Id && model.PackSofts.ContainsKey(rec.SoftId));
             foreach (var updateSoft in updateSofts)
             {
                 updateSoft.Count =
-               model.PackSofts[updateSoft.SoftId].Item2;
+                model.PackSofts[updateSoft.SoftId].Item2;
                 model.PackSofts.Remove(updateSoft.SoftId);
             }
             int maxPCId = source.PackSofts.Count > 0 ?
-           source.PackSofts.Max(rec => rec.Id) : 0;
+            source.PackSofts.Max(rec => rec.Id) : 0;
             foreach (var pc in model.PackSofts)
             {
                 source.PackSofts.Add(new PackSoft
@@ -88,9 +89,9 @@ namespace SoftShopFileImplement.Implements
                 Price = rec.Price,
                 PackSofts = source.PackSofts
             .Where(recPC => recPC.PackId == rec.Id)
-           .ToDictionary(recPC => recPC.SoftId, recPC =>
+            .ToDictionary(recPC => recPC.SoftId, recPC =>
             (source.Softs.FirstOrDefault(recC => recC.Id ==
-           recPC.SoftId)?.SoftName, recPC.Count))
+            recPC.SoftId)?.SoftName, recPC.Count))
             })
             .ToList();
         }

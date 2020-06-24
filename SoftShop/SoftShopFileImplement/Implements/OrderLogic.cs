@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using SoftShopBusinessLogic.ViewModels;
+using SoftShopFileImplement;
 using SoftShopFileImplement.Models;
 
 namespace SoftShopFileImplement.Implements
@@ -61,6 +62,7 @@ namespace SoftShopFileImplement.Implements
             .Select(rec => new OrderViewModel
             {
                 Id = rec.Id,
+                PackId = rec.PackId,
                 PackName = source.Packs.FirstOrDefault(x => x.Id == rec.PackId)?.PackName,
                 Count = rec.Count,
                 Sum = rec.Sum,

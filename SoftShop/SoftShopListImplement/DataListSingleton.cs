@@ -11,12 +11,16 @@ namespace SoftShopListImplement
         public List<Order> Orders { get; set; }
         public List<Pack> Packs { get; set; }
         public List<PackSoft> PackSofts { get; set; }
+        public List<Warehouse> Warehouses { get; set; }
+        public List<WarehouseSoft> WarehouseSofts { get; set; }
         private DataListSingleton()
         {
             Softs = new List<Soft>();
             Orders = new List<Order>();
             Packs = new List<Pack>();
             PackSofts = new List<PackSoft>();
+            Warehouses = new List<Warehouse>();
+            WarehouseSofts = new List<WarehouseSoft>();
         }
         public static DataListSingleton GetInstance()
         {

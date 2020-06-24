@@ -1,5 +1,4 @@
-﻿using Microsoft.Reporting.WinForms;
-using SoftShopBusinessLogic.BindingModels;
+﻿using SoftShopBusinessLogic.BindingModels;
 using SoftShopBusinessLogic.BusinessLogics;
 using Microsoft.Reporting.WinForms;
 using System;
@@ -25,8 +24,7 @@ namespace SoftShopView
             InitializeComponent();
             this.logic = logic;
         }
-
-        private void buttonMake_Click(object sender, EventArgs e)
+        private void ButtonMake_Click(object sender, EventArgs e)
         {
             try
             {
@@ -38,11 +36,10 @@ namespace SoftShopView
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-                MessageBoxIcon.Error);
+               MessageBoxIcon.Error);
             }
         }
-
-        private void buttonToPdf_Click(object sender, EventArgs e)
+        private void ButtonToPdf_Click(object sender, EventArgs e)
         {
             using (var dialog = new SaveFileDialog { Filter = "pdf|*.pdf" })
             {
@@ -50,17 +47,15 @@ namespace SoftShopView
                 {
                     try
                     {
-                        logic.SavePackSoftsToPdfFile(new ReportBindingModel
+                        logic.SavePacksToPdfFile(new ReportBindingModel
                         {
                             FileName = dialog.FileName,
                         });
-                        MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
-                            MessageBoxIcon.Information);
+                        MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
+                        MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
