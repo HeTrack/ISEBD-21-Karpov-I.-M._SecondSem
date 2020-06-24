@@ -59,7 +59,7 @@ namespace SoftShopBusinessLogic.BusinessLogics
     }
 
         /// <summary>
-        /// Сохранение компонент в файл-Word
+        /// Сохранение ПО в файл-Word
         /// </summary>
         /// <param name="model"></param>
         public void SavePacksToWordFile(ReportBindingModel model)
@@ -73,7 +73,7 @@ namespace SoftShopBusinessLogic.BusinessLogics
         }
 
         /// <summary>
-        /// Сохранение закусок с указаеним продуктов в файл-Excel
+        /// Сохранение пакетов с указанием ПО в файл-Excel
         /// </summary>
         /// <param name="model"></param>
         public void SaveOrdersToExcelFile(ReportBindingModel model)
@@ -88,7 +88,7 @@ namespace SoftShopBusinessLogic.BusinessLogics
         }
 
         /// <summary>
-        /// Сохранение закусок с продуктами в файл-Pdf
+        /// Сохранение пакетов с ПО в файл-Pdf
         /// </summary>
         /// <param name="model"></param>
         public void SavePackSoftsToPdfFile(ReportBindingModel model)
