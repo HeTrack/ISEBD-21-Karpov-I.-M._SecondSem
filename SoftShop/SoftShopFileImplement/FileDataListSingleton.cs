@@ -16,16 +16,19 @@ namespace SoftShopFileImplement
         private readonly string OrderFileName = "C:\\Users\\iliya\\Source\\Semestr 2 TP\\SoftShop\\Order.xml";
         private readonly string PackFileName = "C:\\Users\\iliya\\Source\\Semestr 2 TP\\SoftShop\\Pack.xml";
         private readonly string PackSoftFileName = "C:\\Users\\iliya\\Source\\Semestr 2 TP\\SoftShop\\PackSoft.xml";
+        private readonly string ClientFileName = "C:\\Users\\iliya\\Source\\Semestr 2 TP\\SoftShop\\Client.xml";
         public List<Soft> Softs { get; set; }
         public List<Order> Orders { get; set; }
         public List<Pack> Packs { get; set; }
         public List<PackSoft> PackSofts { get; set; }
+        public List<Client> Clients { get; set; }
         private FileDataListSingleton()
         {
             Softs = LoadSofts();
             Orders = LoadOrders();
             Packs = LoadPacks();
             PackSofts = LoadPackSofts();
+            Clients = LoadClients();
         }
         public static FileDataListSingleton GetInstance()
         {
@@ -41,6 +44,27 @@ namespace SoftShopFileImplement
             SaveOrders();
             SavePacks();
             SavePackSofts();
+            SaveClients();
+        }
+        private List<Client> LoadClients()
+        {
+            var list = new List<Client>();
+            if (File.Exists(ClientFileName))
+            {
+                XDocument xDocument = XDocument.Load(ClientFileName);
+                var xElements = xDocument.Root.Elements("Client").ToList();
+                foreach (var elem in xElements)
+                {
+                    list.Add(new Client
+                    {
+                        Id = Convert.ToInt32(elem.Attribute("Id").Value),
+                        ClientFIO = elem.Element("ClientFIO").Value,
+                        Email = elem.Element("Email").Value,
+                        Password = elem.Element("Password").Value
+                    });
+                }
+            }
+            return list;
         }
         private List<Soft> LoadSofts()
         {
@@ -75,6 +99,7 @@ namespace SoftShopFileImplement
                         PackId = Convert.ToInt32(elem.Element("PackId").Value),
                         Count = Convert.ToInt32(elem.Element("Count").Value),
                         Sum = Convert.ToDecimal(elem.Element("Sum").Value),
+                        ClientId = Convert.ToInt32(elem.Element("ClientId").Value),
                         Status = (OrderStatus)Enum.Parse(typeof(OrderStatus),
                    elem.Element("Status").Value),
                         DateCreate =
@@ -126,6 +151,25 @@ namespace SoftShopFileImplement
             }
             return list;
         }
+        private void SaveClients()
+        {
+            if (Clients != null)
+            {
+                var xElement = new XElement("Clients");
+
+                foreach (var client in Clients)
+                {
+                    xElement.Add(new XElement("Client",
+                    new XAttribute("Id", client.Id),
+                    new XElement("ClientFIO", client.ClientFIO),
+                    new XElement("Email", client.Email),
+                    new XElement("Password", client.Password)));
+                }
+
+                XDocument xDocument = new XDocument(xElement);
+                xDocument.Save(ClientFileName);
+            }
+        }
         private void SaveSofts()
         {
             if (Softs != null)
@@ -151,6 +195,7 @@ namespace SoftShopFileImplement
                     xElement.Add(new XElement("Order",
                     new XAttribute("Id", order.Id),
                     new XElement("PackId", order.PackId),
+                    new XElement("ClientId", order.ClientId),
                     new XElement("Count", order.Count),
                     new XElement("Sum", order.Sum),
                     new XElement("Status", order.Status),

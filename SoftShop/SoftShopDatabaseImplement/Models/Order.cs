@@ -9,6 +9,7 @@ namespace SoftShopDatabaseImplement.Models
     public class Order
     {
         public int Id { get; set; }
+        public int ClientId { get; set; }
         public int PackId { get; set; }
         [Required]
         public int Count { get; set; }
@@ -20,5 +21,6 @@ namespace SoftShopDatabaseImplement.Models
         public DateTime DateCreate { get; set; }
         public DateTime? DateImplement { get; set; }
         public virtual Pack Pack { get; set; }
+        public Client Client { get; set; }
     }
 }

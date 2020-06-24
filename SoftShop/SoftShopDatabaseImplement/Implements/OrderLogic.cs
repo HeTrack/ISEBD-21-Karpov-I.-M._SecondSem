@@ -32,6 +32,7 @@ namespace SoftShopDatabaseImplement.Implements
                     context.Orders.Add(element);
                 }
                 element.PackId = model.PackId == 0 ? element.PackId : model.PackId;
+                element.ClientId = model.ClientId == null ? element.ClientId : (int)model.ClientId;
                 element.Count = model.Count;
                 element.Sum = model.Sum;
                 element.Status = model.Status;
@@ -45,27 +46,15 @@ namespace SoftShopDatabaseImplement.Implements
         {
             using (var context = new SoftShopDatabase())
             {
-                using (var transaction = context.Database.BeginTransaction())
+                Order element = context.Orders.FirstOrDefault(rec => rec.Id == model.Id);
+                if (element != null)
                 {
-                    try
-                    {
-                        Order order = context.Orders.FirstOrDefault(rec => rec.Id == model.Id);
-                        if (order != null)
-                        {
-                            context.Orders.Remove(order);
-                        }
-                        else
-                        {
-                            throw new Exception("Элемент не найден");
-                        }
-                        context.SaveChanges();
-                        transaction.Commit();
-                    }
-                    catch (Exception)
-                    {
-                        transaction.Rollback();
-                        throw;
-                    }
+                    context.Orders.Remove(element);
+                    context.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception("Элемент не найден");
                 }
             }
         }
@@ -74,21 +63,25 @@ namespace SoftShopDatabaseImplement.Implements
         {
             using (var context = new SoftShopDatabase())
             {
-                return context.Orders.Where(rec => model == null ||
-                     (rec.Id == model.Id && model.Id.HasValue) ||
-                     (model.DateFrom.HasValue && model.DateTo.HasValue &&
-                     (rec.DateCreate >= model.DateFrom) && (rec.DateCreate <= model.DateTo))).ToList().Select(rec => new OrderViewModel()
-                 {
-                         Id = rec.Id,
-                         PackId = rec.PackId,
-                         PackName = context.Packs.FirstOrDefault((r) => r.Id == rec.PackId).PackName,
-                         Count = rec.Count,
-                         DateCreate = rec.DateCreate,
-                         DateImplement = rec.DateImplement,
-                         Status = rec.Status,
-                         Sum = rec.Sum
-                     })
-            .ToList();
+                return context.Orders.Where(rec => model == null || (rec.Id == model.Id && model.Id.HasValue)
+                || (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo) ||
+                (model.ClientId.HasValue && rec.ClientId == model.ClientId))
+                .Include(rec => rec.Pack)
+                .Include(rec => rec.Client)
+                    .Select(rec => new OrderViewModel
+                {
+                    Id = rec.Id,     
+                    ClientId = rec.ClientId,
+                    PackId = rec.PackId,
+                    Count = rec.Count,
+                    Sum = rec.Sum,
+                    Status = rec.Status,
+                    DateCreate = rec.DateCreate,
+                    DateImplement = rec.DateImplement,
+                    PackName = rec.Pack.PackName,
+                    ClientFIO = rec.Client.ClientFIO
+                    })
+                .ToList();
             }
         }
     }

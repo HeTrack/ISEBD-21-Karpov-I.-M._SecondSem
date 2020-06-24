@@ -5,6 +5,7 @@ using System.ComponentModel;
 
 namespace SoftShopBusinessLogic.ViewModels
 {
+
     public class SoftViewModel
     {
         public int Id { get; set; }

@@ -35,6 +35,7 @@ namespace SoftShopFileImplement.Implements
                 source.Orders.Add(element);
             }
             element.PackId = model.PackId == 0 ? element.PackId : model.PackId;
+            element.ClientId = model.ClientId == null ? element.ClientId : (int)model.ClientId;
             element.Count = model.Count;
             element.Sum = model.Sum;
             element.Status = model.Status;
@@ -57,11 +58,14 @@ namespace SoftShopFileImplement.Implements
         public List<OrderViewModel> Read(OrderBindingModel model)
         {
             return source.Orders
-            .Where(rec => model == null || rec.Id == model.Id || (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo))
+           .Where(rec => model == null || rec.Id == model.Id || (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo)
+            || model.ClientId.HasValue && rec.ClientId == model.ClientId)
             .Select(rec => new OrderViewModel
             {
                 Id = rec.Id,
                 PackName = source.Packs.FirstOrDefault(x => x.Id == rec.PackId)?.PackName,
+                ClientId = rec.ClientId,
+                ClientFIO = source.Clients.FirstOrDefault(recC => recC.Id == rec.ClientId)?.ClientFIO,
                 Count = rec.Count,
                 Sum = rec.Sum,
                 Status = rec.Status,
@@ -69,6 +73,14 @@ namespace SoftShopFileImplement.Implements
                 DateImplement = rec.DateImplement
             })
             .ToList();
+        }
+
+        private string GetPackName(int id)
+        {
+            string name = "";
+            var Pack = source.Packs.FirstOrDefault(x => x.Id == id);
+            name = Pack != null ? Pack.PackName : "";
+            return name;
         }
     }
 }

@@ -23,7 +23,7 @@ namespace SoftShopView
         {
             InitializeComponent();
             this.logic = logic;
-        }
+}
         private void buttonSaveToExcel_Click(object sender, EventArgs e)
         {
             using (var dialog = new SaveFileDialog { Filter = "xlsx|*.xlsx" })

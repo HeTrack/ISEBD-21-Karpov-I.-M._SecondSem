@@ -21,6 +21,7 @@ namespace SoftShopBusinessLogic.BusinessLogics
             this.packLogic = packLogic;
             this.orderLogic = orderLogic;
         }
+
         public List<ReportPackSoftViewModel> GetPackSoft()
         {
             var packs = packLogic.Read(null);
@@ -29,36 +30,36 @@ namespace SoftShopBusinessLogic.BusinessLogics
             {
                 foreach (var ps in pack.PackSofts)
                 {
-                    var record = new ReportPackSoftViewModel
-                    {
-                        PackName = pack.PackName,
-                        SoftName = ps.Value.Item1,
-                        Count = ps.Value.Item2
-                    };
-                    list.Add(record);
+                        var record = new ReportPackSoftViewModel
+                        {
+                            PackName = pack.PackName,
+                            SoftName = ps.Value.Item1,
+                            Count = ps.Value.Item2
+                        };
+                        list.Add(record);
+                    }
                 }
-            }
-
             return list;
         }
 
         public List<IGrouping<DateTime, OrderViewModel>> GetOrders(ReportBindingModel model)
-        {         
+        {
             var list = orderLogic
             .Read(new OrderBindingModel
             {
                 DateFrom = model.DateFrom,
                 DateTo = model.DateTo
-            })          
+
+            })
             .GroupBy(rec => rec.DateCreate.Date)
-            .OrderBy(recc => recc.Key)
+            .OrderBy(recG => recG.Key)
             .ToList();
 
             return list;
-        }
+    }
 
         /// <summary>
-        /// Сохранение компонент в файл-Word
+        /// Сохранение ПО в файл-Word
         /// </summary>
         /// <param name="model"></param>
         public void SavePacksToWordFile(ReportBindingModel model)
@@ -72,13 +73,14 @@ namespace SoftShopBusinessLogic.BusinessLogics
         }
 
         /// <summary>
-        /// Сохранение закусок с указаеним продуктов в файл-Excel
+        /// Сохранение пакетов с указанием ПО в файл-Excel
         /// </summary>
         /// <param name="model"></param>
         public void SaveOrdersToExcelFile(ReportBindingModel model)
         {
             SaveToExcel.CreateDoc(new ExcelInfo
-            {              
+            {
+
                 FileName = model.FileName,
                 Title = "Список заказов",
                 Orders = GetOrders(model)
@@ -86,7 +88,7 @@ namespace SoftShopBusinessLogic.BusinessLogics
         }
 
         /// <summary>
-        /// Сохранение закусок с продуктами в файл-Pdf
+        /// Сохранение пакетов с ПО в файл-Pdf
         /// </summary>
         /// <param name="model"></param>
         public void SavePackSoftsToPdfFile(ReportBindingModel model)
