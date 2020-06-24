@@ -5,6 +5,7 @@ using System.Xml.Linq;
 using SoftShopBusinessLogic.Enums;
 using System.Linq;
 using SoftShopFileImplement.Models;
+using System.Xml.Serialization;
 
 namespace SoftShopFileImplement
 {
@@ -18,6 +19,7 @@ namespace SoftShopFileImplement
         private readonly string ClientFileName = "C:\\Users\\iliya\\source\\Semestr 2 TP\\SoftShop\\Client.xml";
         private readonly string ImplementerFileName = "C:\\Users\\iliya\\source\\Semestr 2 TP\\SoftShop\\Implementer.xml";
         private readonly string MessageInfoFileName = "C:\\Users\\iliya\\source\\Semestr 2 TP\\SoftShop\\MessageInfo.xml";
+
         public List<Soft> Softs { get; set; }
         public List<Order> Orders { get; set; }
         public List<Pack> Packs { get; set; }

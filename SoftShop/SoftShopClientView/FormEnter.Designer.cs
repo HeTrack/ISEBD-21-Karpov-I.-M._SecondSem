@@ -44,7 +44,7 @@
                 //
                 // textBoxEmail
                 //
-                this.textBoxEmail.Location = new System.Drawing.Point(74, 18);
+                this.textBoxEmail.Location = new System.Drawing.Point(94, 18);
                 this.textBoxEmail.Name = "textBoxEmail";
                 this.textBoxEmail.Size = new System.Drawing.Size(200, 20);
             this.textBoxEmail.TabIndex = 1;
@@ -60,7 +60,7 @@
             //
             // textBoxPassword
             //
-            this.textBoxPassword.Location = new System.Drawing.Point(74, 61);
+            this.textBoxPassword.Location = new System.Drawing.Point(94, 61);
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.Size = new System.Drawing.Size(200, 20);
             this.textBoxPassword.TabIndex = 3;
@@ -69,7 +69,7 @@
             //
             this.buttonRegister.Location = new System.Drawing.Point(43, 106);
             this.buttonRegister.Name = "buttonRegister";
-            this.buttonRegister.Size = new System.Drawing.Size(100, 23);
+            this.buttonRegister.Size = new System.Drawing.Size(110, 28);
             this.buttonRegister.TabIndex = 4;
             this.buttonRegister.Text = "Регистрация";
             this.buttonRegister.UseVisualStyleBackColor = true;
@@ -80,7 +80,7 @@
             //
             this.buttonLogin.Location = new System.Drawing.Point(174, 106);
             this.buttonLogin.Name = "buttonLogin";
-            this.buttonLogin.Size = new System.Drawing.Size(75, 23);
+            this.buttonLogin.Size = new System.Drawing.Size(75, 28);
             this.buttonLogin.TabIndex = 5;
             this.buttonLogin.Text = "Вход";
             this.buttonLogin.UseVisualStyleBackColor = true;
