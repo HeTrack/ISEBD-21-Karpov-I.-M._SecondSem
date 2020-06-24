@@ -24,7 +24,7 @@ namespace SoftShopBusinessLogic.BusinessLogics
             this.warehouseLogic = warehouseLogic;
         }
         /// <summary>
-        /// Получение списка компонент с указанием, в каких изделиях используются
+        /// Получение списка ПО с указанием, в каких пакетах используются
         /// </summary>
         /// <returns></returns>
         public List<ReportPackSoftViewModel> GetPackSoft()
@@ -80,7 +80,7 @@ namespace SoftShopBusinessLogic.BusinessLogics
             return list;
         }
         /// <summary>
-        /// Сохранение компонент в файл-Word
+        /// Сохранение ПО в файл-Word
         /// </summary>
         /// <param name="model"></param>
         public void SavePacksToWordFile(ReportBindingModel model)
