@@ -16,10 +16,10 @@ namespace SoftShopDatabaseImplement.Implements
             using (var context = new SoftShopDatabase())
             {
                 Implementer element = context.Implementers.FirstOrDefault(rec => rec.ImplementerFIO == model.ImplementerFIO && rec.Id != model.Id);
-                if(element != null)              
-                    {
-                        throw new Exception("Уже есть исполнитель с таким ФИО");
-                    }
+                if (element != null)
+                {
+                    throw new Exception("Уже есть исполнитель с таким ФИО");
+                }
                 if (model.Id.HasValue)
                 {
                     element = context.Implementers.FirstOrDefault(rec => rec.Id == model.Id);
@@ -36,7 +36,6 @@ namespace SoftShopDatabaseImplement.Implements
                  element.ImplementerFIO = model.ImplementerFIO;
                 element.WorkingTime = model.WorkingTime;
                 element.PauseTime = model.PauseTime;
-
                 context.SaveChanges();
             }
         }

@@ -22,7 +22,7 @@ namespace SoftShopFileImplement.Implements
 
             if (element != null)
             {
-                throw new Exception("Уже есть клиент с таким логином");
+                throw new Exception("Уже есть клиент с таким названием");
             }
 
             if (model.Id.HasValue)

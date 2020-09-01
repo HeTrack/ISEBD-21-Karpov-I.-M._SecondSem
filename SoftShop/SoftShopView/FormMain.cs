@@ -22,30 +22,22 @@ namespace SoftShopView
         private readonly IOrderLogic orderLogic;
         private readonly ReportLogic reportLogic;
         private readonly WorkModeling work;
-        public FormMain(MainLogic logic, IOrderLogic orderLogic, WorkModeling work, ReportLogic reportLogic)
+        private readonly BackUpAbstractLogic backUpAbstractLogic;
+        public FormMain(MainLogic logic, IOrderLogic orderLogic, WorkModeling work, ReportLogic reportLogic, BackUpAbstractLogic backUpAbstractLogic)
         {
             InitializeComponent();
             this.logic = logic;
             this.reportLogic = reportLogic;
             this.work = work;
             this.orderLogic = orderLogic;
+            this.backUpAbstractLogic = backUpAbstractLogic;
         }
 
         private void LoadData()
         {
             try
             {
-                var list = orderLogic.Read(null);
-                if (list != null)
-                {
-                    dataGridView.DataSource = list;
-                    dataGridView.Columns[0].Visible = false;
-                    dataGridView.Columns[1].Visible = false;
-                    dataGridView.Columns[2].Visible = false;
-                    dataGridView.Columns[5].Visible = false;
-                    dataGridView.Columns[5].AutoSizeMode =
-                   DataGridViewAutoSizeColumnMode.Fill;
-                }
+                Program.ConfigGrid(orderLogic.Read(null), dataGridView);
             }
             catch (Exception ex)
             {
@@ -145,6 +137,28 @@ namespace SoftShopView
         {
             var form = Container.Resolve<FormMessages>();
             form.ShowDialog();
+        }
+
+        private void СоздатьБекапToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (backUpAbstractLogic != null)
+                {
+                    var fbd = new FolderBrowserDialog();
+                    if (fbd.ShowDialog() == DialogResult.OK)
+                    {
+                        backUpAbstractLogic.CreateArchive(fbd.SelectedPath);
+                        MessageBox.Show("Бекап создан", "Сообщение",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
+               MessageBoxIcon.Error);
+            }
         }
     }
 }

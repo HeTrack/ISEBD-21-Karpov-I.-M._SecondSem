@@ -19,7 +19,7 @@ namespace SoftShopListImplement.Implements
         public void CreateOrUpdate(ImplementerBindingModel model)
         {
             Implementer tempImplementer = model.Id.HasValue ? null : new Implementer { Id = 1 };
-          
+
             foreach (var implementer in source.Implementers)
             {
                 if (implementer.ImplementerFIO == model.ImplementerFIO && implementer.Id != model.Id)
@@ -31,6 +31,7 @@ namespace SoftShopListImplement.Implements
                 {
                     tempImplementer.Id = tempImplementer.Id + 1;
                 }
+
                 else if (model.Id.HasValue && implementer.Id == model.Id)
                 {
                     tempImplementer = implementer;
