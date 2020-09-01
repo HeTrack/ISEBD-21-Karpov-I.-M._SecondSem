@@ -1,7 +1,6 @@
 ﻿using Microsoft.Reporting.WinForms;
 using SoftShopBusinessLogic.BindingModels;
 using SoftShopBusinessLogic.BusinessLogics;
-using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -55,12 +54,12 @@ namespace SoftShopView
                             FileName = dialog.FileName,
                         });
                         MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
-                            MessageBoxIcon.Information);
+                        MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
+                        MessageBoxIcon.Error);
                     }
                 }
             }

@@ -45,7 +45,7 @@
             // 
             // textBoxEmail
             //
-            this.textBoxEmail.Location = new System.Drawing.Point(101, 18);
+            this.textBoxEmail.Location = new System.Drawing.Point(125, 18);
             this.textBoxEmail.Name = "textBoxEmail";
             this.textBoxEmail.Size = new System.Drawing.Size(200, 20);
             this.textBoxEmail.TabIndex = 1;
@@ -61,7 +61,7 @@
             //
             // textBoxPassword
             //
-            this.textBoxPassword.Location = new System.Drawing.Point(101, 61);
+            this.textBoxPassword.Location = new System.Drawing.Point(125, 61);
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.Size = new System.Drawing.Size(200, 20);
             this.textBoxPassword.TabIndex = 3;
@@ -77,7 +77,7 @@
             //
             // textBoxClientFIO
             //
-            this.textBoxClientFIO.Location = new System.Drawing.Point(101, 105);
+            this.textBoxClientFIO.Location = new System.Drawing.Point(125, 105);
             this.textBoxClientFIO.Name = "textBoxClientFIO";
             this.textBoxClientFIO.Size = new System.Drawing.Size(200, 20);
             this.textBoxClientFIO.TabIndex = 5;
@@ -86,7 +86,7 @@
             //
             this.buttonRegister.Location = new System.Drawing.Point(149, 152);
             this.buttonRegister.Name = "buttonRegister";
-            this.buttonRegister.Size = new System.Drawing.Size(100, 23);
+            this.buttonRegister.Size = new System.Drawing.Size(110, 28);
             this.buttonRegister.TabIndex = 6;
             this.buttonRegister.Text = "Регистрация";
             this.buttonRegister.UseVisualStyleBackColor = true;
