@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <StartupObject>SoftShopRestApi.Program</StartupObject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.5" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.3" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SoftShopBusinessLogic\SoftShopBusinessLogic.csproj" />
+    <ProjectReference Include="..\SoftShopDatabaseImplement\SoftShopDatabaseImplement.csproj" />
+    <ProjectReference Include="..\SoftShopFileImplement\SoftShopFileImplement.csproj" />
+  </ItemGroup>
+
+
+</Project>
